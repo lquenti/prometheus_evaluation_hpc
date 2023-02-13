@@ -1,0 +1,156 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Presentation Template
+% LaTeX Template
+% Version 1.0 (2023-02-08)
+%
+% This template was adapted by:
+% Jonathan Decker (jonathan.decker@uni-goettingen.de)
+% From a template made by:
+% Julian Kunkel (julian.kunkel@gwdg.de)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[compress,aspectratio=169]{beamer}
+
+% make sure the theme file is on this path
+\usepackage{../assets/beamerthemeGoettingen}
+
+\addbibresource{ref.bib}
+\graphicspath{{../}{../assets/}}
+
+% --- document configuration ---
+\newcommand{\mytitle}{My Title}     
+% Leave empty for no subtitle
+\newcommand{\mysubtitle}{My Subtitle}   
+\newcommand{\myauthor}{My Author}
+\newcommand{\myauthorurl}{My Author URL}
+\newcommand{\myvenue}{My Venue}
+% For example, use \today
+\newcommand{\mydate}{My Date}
+% For example, Institute for Computer Science / GWDG
+\newcommand{\myinstitute}{My institute}         
+
+\configuretitlepage
+
+
+\begin{document}
+
+\begin{frame}[plain]
+	\titlepage
+\end{frame}
+
+\begin{frame}[t]{Table of contents}
+  \tableofcontents[subsectionstyle=hide/hide]
+\end{frame}
+
+% --- slides begin ---
+
+\section{Section 1}
+
+\begin{frame}{Itemize}
+  \begin{itemize}
+    \item 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Itemize within itemize}
+    \begin{itemize}
+        \item List
+            \begin{itemize}
+                \item Sub-bullet
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Block and negative space}
+    \vspace*{-3em} % Make more space by moving everything up
+    \begin{block}{Block}
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\section{Section 2}
+\sectionIntroHidden % Show an outline of the current section with hidden subsections
+%\sectionIntro % Show an outline of the current section with subsections
+
+\begin{frame}{Includegraphics}
+    \centering
+    \includegraphics[width=0.6\textwidth]{assets/hps-logo.pdf}\\
+    \source{Image source: \url{https://hps.vi4io.org/start}}
+\end{frame}
+
+\subsection{Subsec 1} % Subsections are used for highlighting parts of the top navigation bar, the names only show up in the sectionIntro
+\begin{frame}{Pause}
+    \begin{itemize}
+        \item 1
+        \pause  % Create separate slides in the pdf to show points one at a time
+        \item 2
+        \pause
+        \item 3
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Columns}
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+    Left column
+    \end{column}
+    \begin{column}{0.5\textwidth}
+    Right column % Can also be used for inserting images next to text
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Tikz graphics}
+    % Use tikz for placing images based on page coordinates
+    \begin{tikzpicture}[remember picture,overlay]  
+      \node [xshift=-2.8cm,yshift=-1.8cm] at (current page.north east)
+        {\includegraphics[width=4cm]{assets/hps-logo.pdf}};
+    \end{tikzpicture}
+    \source{Image source: \url{https://hps.vi4io.org/start}}
+\end{frame}
+
+\begin{frame}[fragile]{Code listings}
+    % Use minted package for handling code listings on slides
+    \texttt{Hello World} implemented in C++
+    
+    \begin{tcolorbox}[title=C++]
+        \footnotesize\inputminted[xleftmargin=1em,linenos]{c++}{../assets/hello-world.cpp}
+    \end{tcolorbox}
+
+\end{frame}
+
+\begin{frame}{Todonotes}
+    \todo{Set todo reminders for yourself}
+\end{frame}
+
+\begin{frame}{Quotes}
+    % Make a quote the central element of a slide to emphasize its importance
+    \vspace*{\fill}
+    \begin{quote}
+        \centering\Large
+        \enquote{Non-reproducible single occurrences are of no significance to science.}
+    \end{quote}
+    \vspace{1cm}
+    \hspace*\fill{\small--- Karl Popper, The Logic of Scientific Discovery, 2002, p.\,66}
+    \vspace*{\fill}
+
+    \source{\cite{popperLogicScientificDiscovery2002}}
+\end{frame}
+
+
+\section{Section 3}
+\begin{frame}{Last Frame}
+\label{pg:lastpage} % Label on last frame to get the page number for footer
+
+\end{frame}
+
+\begin{frame}{References}
+    % References slide in appendix
+    \renewcommand*{\bibfont}{\normalfont\scriptsize}
+    \printbibliography[heading=none]
+\end{frame}
+
+\end{document}
