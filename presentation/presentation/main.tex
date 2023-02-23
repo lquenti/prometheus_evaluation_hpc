@@ -31,144 +31,413 @@
 
 \configuretitlepage
 
-
 \begin{document}
 
 \begin{frame}[plain]
 	\titlepage
 \end{frame}
 
-\begin{frame}[t]{Table of contents}
+\begin{frame}[t]{Table of Contents}
   \tableofcontents[subsectionstyle=hide/hide]
 \end{frame}
 
 % --- slides begin ---
 
 \section[Introduction]{Getting up to Speed: Introduction}
-\begin{frame}{Itemize}
-  \begin{itemize}
-    \item
-  \end{itemize}
+\begin{frame}{Why do we care about Time Series Metrics Data?}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+  \item To get an Overview of the Usage of our Systems.
+  \item Find Bottlenecks
+  \item Help with Workload Balancing
+  \item Demand Analysis and Forecasting
+  \item Optimize Energy Efficiency
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+  % TODO
+  %\includegraphics[width=\textwidth]{example_grafana_dashboard.png}
+  \caption{Example Grafana Dashboard}
+\end{figure}
+\end{column}
+\end{columns}
+~\\~\\
+\pause
+\begin{center}
+  \large
+But why do we care about the Databases performance?
+\end{center}
 \end{frame}
+
+\begin{frame}{Why do we Care About Performance?}
+\begin{center}
+\begin{figure}
+  \includegraphics[width=\textwidth]{assets/scalefoot.png}
+  \caption{\cite{ScaleFoot}}
+\end{figure}
+To understand the importance of performance, we need to understand the architecture of a monitoring system.
+\end{center}
+\end{frame}
+
+\begin{frame}{Monitoring System Architecture}
+\begin{center}
+\begin{figure}
+  \includegraphics[height=.8\textheight]{assets/monitoring_system_architecture.png}
+  \caption{Monitoring System Architecture}
+\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{But actually...}
+\begin{center}
+\begin{figure}
+  \includegraphics[height=.8\textheight]{assets/monitoring_system_architecture_2.png}
+  \caption{Emmy's 1422 nodes located in G\"ottingen}
+\end{figure}
+\end{center}
+\end{frame}
+
 \section[Overview]{The Need for Speed: From Lucene to Grafana}
-\begin{frame}{Elastic Stack}
+\begin{frame}{The Need for Speed: From Lucene to Grafana}
+  \begin{itemize}
+    \item In this project we evaluated two competing technologies for storing time-series metrics data.
+    \begin{itemize}
+      \item Elasticsearch, a distributed search engine.
+      \item InfluxDB, a time-series database.
+    \end{itemize}
+  \item In order to understand why we chose these two technologies, one has to look at their shared history.
+  \end{itemize}
 \end{frame}
+
+\begin{frame}{Lucene}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+  \item Java-based Search Engine Library
+  \item Developed in 1999 as a search engine for Apache Nutch
+  \item Can Perform Fuzzy Full-Text Searches
+  \item Popularized by ElasticSearch
+  \item Used at Wikipedia and Twitter
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth]{lucene.png}
+  \caption{Lucene Logo}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Elasticsearch}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+  \item Distributed Search Engine
+  \item Based on Lucene
+  \item Developed in 2010
+  \item Can be used as a NoSQL Database
+  \item Popularized by Kibana
+  \item Used at Netflix, Stackoverflow, LinkedIn
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth]{elasticsearch.png}
+  \caption{Elasticsearch Logo}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Money, Money, Money}
+\begin{itemize}
+  \item Elasticsearch rose to popularity amongst the DevOps community.
+  \item Thus, it grew beyond the scope of a hobby project and needed funding.
+  \item And a database alone is not enough for business applications.
+  \item Thus, the ELK stack was born.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{ELK(B) stack}
+\begin{center}
+\begin{figure}
+  \includegraphics[width=\textwidth]{elk.png}
+  % TODO: CITE https://www.michael-wutzke.de/elastic-stack-und-elasticsearch-grundlagen/
+  \caption{ELK Stack}
+\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Grafana}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+  \item Main solution used for System Monitoring
+  \item Forked from Kibana
+  \item More specialized for time-series data
+  \item Supports multiple data sources
+  \begin{itemize}
+    \item Removes the necessity for Elasticsearch
+    \item Allows for more specialized database technologies
+  \end{itemize}
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+  % TODO
+  %\includegraphics[width=\textwidth]{grafana.png}
+  \caption{Example Grafana Dashboard}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{InfluxDB}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+  \item Time-Series Database
+  \item Built for technology applications
+  \item Highly specialized for time-series data
+  \item Also used at the GWDG as a data source for Grafana
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+  % TODO
+  %\includegraphics[width=\textwidth]{influxdb.png}
+  \caption{InfluxDB Logo}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
 \section[Related Work]{Looking in the Rear-View-Mirror: Related Work}
-\begin{frame}{Itemize}
+\begin{frame}{Looking in the Rear-View-Mirror: Related Work}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+  \item There is only a single exhaustive performance comparison of Elasticsearch and InfluxDB.
+  \item It was conducted by InfluxData, the company behind InfluxDB.
+  \item The code is publically available on GitHub.
+  \item In this section, we will deep dive into their methodology and findings.
+  % TODO cite
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+  \includegraphics[height=.8\textheight]{github_influx.png}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Overview}
+\begin{itemize}
+  \item Measured across 3 vectors
+  \begin{enumerate}
+    \item Data ingest performance
+    \item On-disk storage requirements
+    \item Mean query response time
+  \end{enumerate}
+\item Split into 5 disconnected steps
+  \begin{enumerate}
+    \item Data Generation
+    \item Data Loading
+    \item Query Generation
+    \item Query Execution
+    \item Query Validation
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Influx Comparisons}
+\begin{block}{1. Data Generation}
+\begin{itemize}
+  \item Random and Deterministic (pinned PRNG seed)
+  \item Same generation logic for both databases
+  \item Generated beforehand to avoid serialization overhead
+  \item Data is modelled realistically
   \begin{itemize}
-    \item
+    \item DevOps related metrics, structure same as telegraf
+    \begin{itemize}
+      \item \texttt{cpu}, \texttt{diskio}, \texttt{kernel}, \texttt{mem}...
+    \end{itemize}
+    \item clamped random walk
+    \begin{itemize}
+      \item important for optimizations such as delta compression
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Influx Comparisons}
+\begin{block}{2. Data Loading}
+  \begin{itemize}
+    \item KISS
+    \item Batched into bulk queries (default 5000 documents)
+    \item parallelized (default 5 workers)
+    \item sent as fast as possible
+  \end{itemize}
+\end{block}
+\pause
+\begin{block}{3. Query Generation}
+  \begin{itemize}
+    \item Also random and deterministic
+    \item Same generation logic for both databases
+    \item Also generated beforehand
+  \end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Influx Comparisons}
+\begin{block}{4. Query Execution}
+  \begin{itemize}
+    \item KISS
+    \item Sends parallelized range queries
+  \end{itemize}
+\end{block}
+\pause
+\begin{block}{5. Query Validation}
+  \begin{itemize}
+    \item Done via manual verification
+    \item Ensuring that both aggregation results are approximately the same
+  \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Influx Comparisons}
+\begin{block}{Results}
+  % TODO QUOTE and cite
+  \begin{itemize}
+    \item InfluxDB outperformed Elasticsearch by \textbf{3.8x} when it came to data ingestion
+    \item InfluxDB outperformed Elasticsearch by up to \textbf{7.7x} when measuring query performance
+    \item InfluxDB outperformed Elasticsearch by delivering \textbf{9x} better compression
+  \end{itemize}
+\end{block}
+\pause
+\begin{block}{Problems}
+\begin{itemize}
+  \item Bad incentive structure
+  \item Done with Influx version 1
+  \item Not oriented for HPC workloads and topologies
+  \item Data was ingested in bulk
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section[Methodology]{Under the Hood: Our Methodology}
+\begin{frame}{Under the Hood: Our Methodology}
+  \begin{itemize}
+    \item We will extend the methodology of the InfluxData paper.
+    \item Everything not mentioned is the same.
+    \item Adapted to our use case
+    \begin{itemize}
+      \item This is a huge feat; Emmy is big
+      \item We run the recommended production configuration
+      \item We mainly focus on write, not query read
+      \begin{itemize}
+        \item Since this is the bulk of the work
+      \end{itemize}
+    \end{itemize}
+  \item Split into distinct phases as well.
+    \begin{itemize}
+      \item KISS! KISS! KISS!
+    \end{itemize}
   \end{itemize}
 \end{frame}
-\section[Methodology]{Under the Hood: Benchmark Methodology and Design}
-\begin{frame}{Itemize}
+
+\begin{frame}{1. Data Generation}
+\begin{itemize}
+  \item Also random and deterministic, pinned PRNG seeds
+  \item Only generating hardware / kernel measurements, no application metrics
+  \item We use clamped 1D perlin noise
+  \item One file per ingest worker!
   \begin{itemize}
-    \item
+    \item Less error prone!
+    \item KISS!!!!!
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{2. Data Ingestion}
+\begin{itemize}
+  \item We don't use bulk ingestion
+  \begin{itemize}
+    \item instead, data of one node per request
+  \end{itemize}
+  \item Sending as fast as possible
+  \item Flushing at the end
+  \item Faster is better
+\end{itemize}
+\end{frame}
+
+\begin{frame}{3. Check Index Compression}
+  \begin{itemize}
+    \item We do not trust their analytics
+    \item Multi-Step process
+    \begin{enumerate}
+      \item Get size of data directory
+      \item Fill the data
+      \item Flush and Compress
+      \begin{itemize}
+        \item \textbf{InfluxDB}: Tree Compaction
+        \item \textbf{Elasticsearch}: Force Merge API
+      \end{itemize}
+      \item After that, we measure again
+    \end{enumerate}
+    \item Smaller $\Delta$ is better
   \end{itemize}
 \end{frame}
+
+\begin{frame}{4. Design Queries}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{block}{Methodology}
+\begin{enumerate}
+  \item Get a real world Grafana dashboard
+  \item Extract the queries through the networking tab
+  \item Port them to the Query Languages
+  \item Make them parameterized
+\end{enumerate}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+  \centering
+  %\includegraphics[width=\textwidth]{grafana.png}
+  \caption{Extracting through Networking Tab}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{5. Benchmark Queries}
+\begin{itemize}
+  \item We test querying while ingesting data
+  \item Linear step increment of index size
+  \begin{itemize}
+    \item correllate the response time
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
 \section[Results]{The Podium: Results and Conclusion}
 
-\begin{frame}{Itemize}
-  \begin{itemize}
-    \item
-  \end{itemize}
+\begin{frame}{The Podium: Results and Conclusion}
+  \begin{center}
+    \LARGE Stay tuned ;-)
+  \end{center}
+\label{pg:lastpage} % Label on last frame to get the page number for footer
 \end{frame}
-%
-%\begin{frame}{Itemize within itemize}
-%    \begin{itemize}
-%        \item List
-%            \begin{itemize}
-%                \item Sub-bullet
-%            \end{itemize}
-%    \end{itemize}
-%\end{frame}
-%
-%\begin{frame}{Block and negative space}
-%    \vspace*{-3em} % Make more space by moving everything up
-%    \begin{block}{Block}
-%        \begin{itemize}
-%            \item
-%        \end{itemize}
-%    \end{block}
-%\end{frame}
-%
-%
-%\section{Section 2}
-%\sectionIntroHidden % Show an outline of the current section with hidden subsections
-%%\sectionIntro % Show an outline of the current section with subsections
-%
-%\begin{frame}{Includegraphics}
-%    \centering
-%    \includegraphics[width=0.6\textwidth]{assets/hps-logo.pdf}\\
-%    \source{Image source: \url{https://hps.vi4io.org/start}}
-%\end{frame}
-%
-%\subsection{Subsec 1} % Subsections are used for highlighting parts of the top navigation bar, the names only show up in the sectionIntro
-%\begin{frame}{Pause}
-%    \begin{itemize}
-%        \item 1
-%        \pause  % Create separate slides in the pdf to show points one at a time
-%        \item 2
-%        \pause
-%        \item 3
-%    \end{itemize}
-%\end{frame}
-%
-%\begin{frame}{Columns}
-%    \begin{columns}
-%    \begin{column}{0.5\textwidth}
-%    Left column
-%    \end{column}
-%    \begin{column}{0.5\textwidth}
-%    Right column % Can also be used for inserting images next to text
-%    \end{column}
-%    \end{columns}
-%\end{frame}
-%
-%\begin{frame}{Tikz graphics}
-%    % Use tikz for placing images based on page coordinates
-%    \begin{tikzpicture}[remember picture,overlay]
-%      \node [xshift=-2.8cm,yshift=-1.8cm] at (current page.north east)
-%        {\includegraphics[width=4cm]{assets/hps-logo.pdf}};
-%    \end{tikzpicture}
-%    \source{Image source: \url{https://hps.vi4io.org/start}}
-%\end{frame}
-%
-%\begin{frame}[fragile]{Code listings}
-%    % Use minted package for handling code listings on slides
-%    \texttt{Hello World} implemented in C++
-%    \begin{tcolorbox}[title=C++]
-%        \footnotesize\inputminted[xleftmargin=1em,linenos]{c++}{../assets/hello-world.cpp}
-%    \end{tcolorbox}
-%
-%\end{frame}
-%
-%\begin{frame}{Todonotes}
-%    \todo{Set todo reminders for yourself}
-%\end{frame}
-%
-%\begin{frame}{Quotes}
-%    % Make a quote the central element of a slide to emphasize its importance
-%    \vspace*{\fill}
-%    \begin{quote}
-%        \centering\Large
-%        \enquote{Non-reproducible single occurrences are of no significance to science.}
-%    \end{quote}
-%    \vspace{1cm}
-%    \hspace*\fill{\small--- Karl Popper, The Logic of Scientific Discovery, 2002, p.\,66}
-%    \vspace*{\fill}
-%
-%    \source{\cite{popperLogicScientificDiscovery2002}}
-%\end{frame}
-%
-%
-%\section{Section 3}
-%\begin{frame}{Last Frame}
-%\label{pg:lastpage} % Label on last frame to get the page number for footer
-%
-%\end{frame}
-%
+
 %\begin{frame}{References}
-%    % References slide in appendix
+    % References slide in appendix
 %    \renewcommand*{\bibfont}{\normalfont\scriptsize}
 %    \printbibliography[heading=none]
 %\end{frame}
