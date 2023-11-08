@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+
+import sys
+import json
+
+def parse_string_to_int_or_float(s):
+    s = s.strip()
+    if s[0] == '-':
+        return -parse_string_to_int_or_float(s[1:])
+    return int(s) if s.isdigit() else float(s)
+
+
+def parse_to_obj(line):
+    # description of the influx format is here:
+    # https://docs.influxdata.com/influxdb/v1.7/write_protocols/line_protocol_tutorial/
+    # for simplification, we assume that each line has tags, fields, and timestamp
+    
+    measurement, rest = line.split(",", 1)
+    split_by_space = rest.split(" ")
+    filter_out_empty = [x for x in split_by_space if x != ""]
+    
+    assert len(filter_out_empty) == 3
+    tags = filter_out_empty[0]
+    fields = filter_out_empty[1]
+    timestamp = filter_out_empty[2]
+    
+    tags_dict = {}
+    fields_dict = {}
+    for tag in tags.split(","):
+        key, value = tag.split("=")
+        tags_dict[key] = value
+    for field in fields.split(","):
+        key, value = field.split("=")
+        value = parse_string_to_int_or_float(value)
+        fields_dict[key] = value
+    
+    obj = {
+        "measurement": measurement,
+        "tags": tags_dict,
+        "fields": fields_dict,
+        "timestamp": timestamp
+    }
+    return obj
+
+def main():
+    if len(sys.argv) != 2: 
+        print("usage: ./convert <path to influxql file>", file=sys.stderr)
+        return
+
+    ifql = sys.argv[1]
+    with open(ifql, 'r') as in_fp:
+        with open("serialized.json", 'w') as out_fp:
+            for line in in_fp:
+                obj = parse_to_obj(line.strip())
+                out_fp.write(json.dumps(obj) + "\n")
+
+if __name__ == "__main__":
+    main()
