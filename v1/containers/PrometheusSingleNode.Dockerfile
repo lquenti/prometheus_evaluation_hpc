@@ -8,9 +8,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir /tsdb
 WORKDIR /tsdb
-COPY ./data/prometheus-2.45.1.linux-amd64.tar.gz  .
+COPY ./assets/prometheus-2.45.1.linux-amd64.tar.gz  .
 RUN tar xzf /tsdb/prometheus-2.45.1.linux-amd64.tar.gz
 WORKDIR /tsdb/prometheus-2.45.1.linux-amd64
+COPY ./assets/prometheus.yml /tsdb/prometheus-2.45.1.linux-amd64/
 
 # Needed as a bind-mount
 RUN mkdir data
