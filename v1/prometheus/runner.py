@@ -12,7 +12,7 @@ PATH_TO_PROMETHEUS_SINGULARITY = "./container/prometheus.sif"
 PORT_RANGE = (14000, 14101)
 SCRAPE_INTERVAL = "10s"
 EVALUATION_INTERVAL = "10s"
-BENCHMARK_TIME_SECS = 60*5 # 5min
+BENCHMARK_TIME_SECS = 60*5
 TMP_DIR = "./tmp_prom"
 TMP_CONF = f"{TMP_DIR}/prometheus.yml"
 
@@ -29,12 +29,17 @@ def spawn(port):
     ])
     return process.pid
 
-
 def kill(pid):
     root = psutil.Process(pid)
     for child in root.children(recursive=True):
         child.kill()
     root.kill()
+
+def terminate(pid):
+    root = psutil.Process(pid)
+    for child in root.children(recursive=True):
+        child.terminate()
+    root.terminate()
 
 ################################################################
 
@@ -88,9 +93,10 @@ def do_benchmark():
     kill(process.pid)
     ...
 
-def kill_node_exporter(pids):
+def terminate_node_exporter(pids):
+    # We can't kill bc we need to save results
     for pid in pids:
-        kill(pid)
+        terminate(pid)
 
 def cleanup_tmp_folder():
     shutil.rmtree(TMP_DIR)
@@ -100,7 +106,7 @@ def main():
     prepare_tmp_folder(cfg)
     pids = start_mock_exporter()
     do_benchmark()
-    kill_node_exporter(pids)
+    terminate_node_exporter(pids)
     cleanup_tmp_folder()
 
 
