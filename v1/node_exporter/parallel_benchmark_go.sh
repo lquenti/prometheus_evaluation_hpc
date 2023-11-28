@@ -8,7 +8,7 @@ for CONCURRENCY in "${STEPS[@]}"
 do
     echo "--------------------------------------------------------"
     echo "Running benchmark with $CONCURRENCY goroutines for $DURATION seconds"
-    go-wrk -c $CONCURRENCY -d $DURATION $TARGET_URL
+    ~/go/bin/go-wrk -c $CONCURRENCY -d $DURATION $TARGET_URL
     sleep 2
 done
 
