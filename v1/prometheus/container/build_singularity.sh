@@ -17,9 +17,9 @@ fi
 
 
 docker_filename="docker_$(date +%Y-%m-%d_%H-%M-%S).tar.gz"
-singularity_filename="singularity_$(date +%Y-%m-%d_%H-%M-%S).sif"
+singularity_filename="prometheus.sif"
 
-sudo rm -rf docker_* singularity_*
+sudo rm -rf docker_* $singularity_filename
 
 docker save "$(sudo docker build -q -f $1 .)" -o $docker_filename && \
 singularity build $singularity_filename docker-archive://$docker_filename
