@@ -1,1 +1,67 @@
 \section{Introduction}
+\subsection{Motivation}
+% - Importance of HPC
+% - HPC at GWDG
+%   - 4 HPC Systems
+%     - SCC, Emmy, Grete, CARO
+%   - SCC
+%     - Oldest cluster
+%     - User group: MPI and Uni
+%     - Very heterogenous with X generations of CPUs and Y generations of GPUs
+%       - Footnote which ones
+%     - 2 locations (MDC, ???)
+%     - Total compute power: ...
+%   - Emmy
+%     - Fourth Super Computer Generation of the HLRN
+%     - 2 Providers: ZIB (Lise) and GWDG (Emmy)
+%     - Top 500 Ranking: ...
+%     - User Group: HLRN and NHR users
+%     - Total Compute Power: ...
+%   - Grete
+%     - Top 500 Ranking: ...
+%     - <https://gwdg.de/about-us/gwdg-news/2023/GN_3-2023_www.pdf>
+%   - CARO
+%     - Top 500 Ranking: ...
+%     - User Group: DLR
+%     - Im Betrieb seit 18.Juli 2022
+%       - <https://www.dlr.de/de/aktuelles/nachrichten/2022/03/20220718_dlr-nimmt-neuen-supercomputer-in-goettingen-in-betrieb>
+%     - Total compute power: ...
+% - Importance of Monitoring
+%   - Look at Slides
+% - Warum wir das eigentlich machen...
+%   - bla bla Unifizierung des Monitorings
+\subsection{Goals and Contributions}
+\subsubsection{Structure}
+
+\section{Background and Related Work}
+\subsection{Monitoring}
+% - typical architecture with graph
+% - On Premise vs Cloud based
+% - push vs pull
+\subsubsection{Current Architecture: GWDG SCC}
+% - TIG with Influxv2 and Flux
+% - Still using InfluxQL
+\subsubsection{Current Architecture: HLRN}
+% - Grafana / Prometheus / Node Exporter 
+\subsection{Time Series Databases}
+\subsection{Prometheus}
+\subsection{TSDB Performance Evaluation}
+
+\section{Benchmark Methodology}
+% TODO bla bla which parts to benchmark
+\subsection{Setup}
+% Where I ran those benchmarks
+\subsection{\texttt{node\_exporter}}
+\subsubsection{Metric Gathering}
+\subsubsection{End to End}
+\subsection{Prometheus}
+
+\section{Results}
+\subsection{\texttt{node\_exporter}}
+\subsection{Prometheus}
+
+\section{Discussion}
+% Node Exporter:
+% - we used /dev/urandom, not perlin noise. This is less realistic but less overhead
+
+\section{Conclusion}
