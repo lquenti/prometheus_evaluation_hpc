@@ -42,16 +42,30 @@ def prepare():
 
     os.makedirs(OUTPUT_PATH)
 
+def kill(pid):
+    root = psutil.Process(pid)
+    for child in root.children(recursive=True):
+        child.kill()
+    root.kill()
+
 def run_benchmark_generic(benchmark_type: BenchmarkType, number_of_processes):
     # Create Output Folder
     folder = f"{OUTPUT_PATH}/{benchmark_type.name}"
     file = f"{folder}/output_{number_of_processes}.txt"
     os.makedirs(folder, exist_ok=True)
+
+    # load up vmstat
+    with open(f"{folder}/vmstat_{number_of_processes}.txt", "w") as fp:
+        vmstat = subprocess.Popen(["vmstat", "1"], stdout=fp)
+
     result = subprocess.run(
         [benchmark_type.path_to_script],
         capture_output=True,
         text=True
     )
+
+    kill(vmstat.pid)
+
     with open(file, 'w') as fp:
         fp.write("stdout:\n")
         fp.write(result.stdout)
@@ -85,10 +99,7 @@ def main():
 
         # We have to kill the subprocesses
         # https://stackoverflow.com/a/27034438/9958281
-        rootp = psutil.Process(process.pid)
-        for childp in rootp.children(recursive=True):
-            childp.kill()
-        rootp.kill()
+        kill(process.pid)
         time.sleep(2)
         print(f"ENDING {n=}")
 
