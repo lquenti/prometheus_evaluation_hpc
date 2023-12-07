@@ -77,6 +77,9 @@ def start_mock_exporter(time_to_start=60) -> list[int]:
     return pids
 
 def do_benchmark():
+    with open(f"{TMP_DIR}/vmstat.txt", "w") as fp:
+        vmstat = subprocess.Popen(["vmstat", "1"], stdout=fp)
+
     process = subprocess.Popen([
         "singularity",
         "run",
@@ -91,15 +94,12 @@ def do_benchmark():
     # actual running time
     time.sleep(BENCHMARK_TIME_SECS)
     kill(process.pid)
-    ...
+    kill(vmstat.pid)
 
 def terminate_node_exporter(pids):
     # We can't kill bc we need to save results
     for pid in pids:
         terminate(pid)
-
-def cleanup_tmp_folder():
-    shutil.rmtree(TMP_DIR)
 
 def main():
     cfg = create_prometheus_config()
@@ -107,7 +107,6 @@ def main():
     pids = start_mock_exporter()
     do_benchmark()
     terminate_node_exporter(pids)
-    cleanup_tmp_folder()
 
 
 if __name__ == "__main__":
