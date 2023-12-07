@@ -10,6 +10,7 @@ import psutil
 PATH_TO_UVICORN = "./venv/bin/uvicorn"
 PATH_TO_PROMETHEUS_SINGULARITY = "./container/prometheus.sif"
 PORT_RANGE = (14000, 14101)
+TIME_TO_START = 2*(PORT_RANGE[1] - PORT_RANGE[0])
 SCRAPE_INTERVAL = "10s"
 EVALUATION_INTERVAL = "10s"
 BENCHMARK_TIME_SECS = 60*5
@@ -71,9 +72,9 @@ def prepare_tmp_folder(cfg):
     with open(TMP_CONF, "w") as fp:
         fp.write(cfg)
 
-def start_mock_exporter(time_to_start=60) -> list[int]:
+def start_mock_exporter() -> list[int]:
     pids = [spawn(port) for port in range(*PORT_RANGE)]
-    time.sleep(time_to_start)
+    time.sleep(TIME_TO_START)
     return pids
 
 def do_benchmark():
