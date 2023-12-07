@@ -3,17 +3,23 @@
 import os
 import shutil
 import subprocess
+import sys
 import time
 
 import psutil
 
+if len(sys.argv) != 3 or not (sys.argv[1].isdigit() and sys.argv[2].isdigit()):
+    print("USAGE: python3 runner.py MIN_PORT MAX_PORT_EXCLUSIVE # (for mock apis, i.e.)")
+    print("i.e. for 100 machines: python3 runner.py 14100 14201")
+    sys.exit(1)
+PORT_RANGE = (int(sys.argv[1]), int(sys.argv[2]))
+
+BENCHMARK_TIME_SECS = 60*5
 PATH_TO_UVICORN = "./venv/bin/uvicorn"
 PATH_TO_PROMETHEUS_SINGULARITY = "./container/prometheus.sif"
-PORT_RANGE = (14000, 14101)
 TIME_TO_START = 2*(PORT_RANGE[1] - PORT_RANGE[0])
 SCRAPE_INTERVAL = "10s"
 EVALUATION_INTERVAL = "10s"
-BENCHMARK_TIME_SECS = 60*5
 TMP_DIR = "./tmp_prom"
 TMP_CONF = f"{TMP_DIR}/prometheus.yml"
 
@@ -73,6 +79,7 @@ def prepare_tmp_folder(cfg):
         fp.write(cfg)
 
 def start_mock_exporter() -> list[int]:
+    print(f"Spawning port range {PORT_RANGE}...")
     pids = [spawn(port) for port in range(*PORT_RANGE)]
     time.sleep(TIME_TO_START)
     return pids
