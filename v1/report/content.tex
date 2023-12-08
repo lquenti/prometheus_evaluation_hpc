@@ -1,45 +1,73 @@
 \section{Introduction}
 \subsection{Motivation}
-% - Importance of HPC
-%   - With simulation and big data becoming a foundation of modern science
-%   - Rise of ML, especially deep DL networks with over a trillion parameters
-% - HPC at GWDG
-%   - 4 HPC Systems
-%     - SCC, Emmy, Grete, CARO
-%   - SCC
-%     - Oldest cluster
-%     - User group: MPI and Uni
-%     - Very heterogenous with X generations of CPUs and Y generations of GPUs
-%       - Footnote which ones
-%     - 2 locations (MDC, ???)
-%     - Total compute power: ...
-%   - Emmy
-%     - Fourth Super Computer Generation of the HLRN
-%     - 2 Providers: ZIB (Lise) and GWDG (Emmy)
-%     - Top 500 Ranking: ...
-%     - User Group: HLRN and NHR users
-%     - Total Compute Power: ...
+With the rise of simulation and big data analytics as new foundations of all modern science,
+access to large scale \ac{HPC} systems has become paramount for good research. Furthermore,
+as the area of machine and deep learning progresses, with models containing over one billion
+parameters \cite{gpt4param},  local computation becomes everless feasable, resulting in the 
+rise of \ac{HPC} usage amongst various domains.\\
+
+This report is written as an addition to my student research at the \ac{GWDG}. The \ac{GWDG} is the
+data center of the University of Göttingen and the data and IT competence center of the 
+Max Planck Society with its own \ac{HPC} department, running four large scale \ac{HPC} systems:
+The \ac{SCC}, Emmy, Grete, and CARO:
+\begin{itemize}
+\item \textbf{\ac{SCC}}\cite{SCC}: The \ac{SCC} is the oldest cluster maintained 
+by the \ac{GWDG}. Its user group is comprised of all researchers of the Max Planck Society as 
+well as all (student) researchers of the University of Göttingen. It is a very heterogenous system,
+based on several different CPUs and GPUs generations, located over several locations within 
+Göttingen. In total, it has 18,376 CPU Cores, 99 TB RAM and 5.2 PiB of Storage.
+\item \textbf{Emmy}\cite{Emmy}: Together with the Lise\footnote{
+\url{https://www.zib.de/research_services/supercomputing}} cluster provided by the ZIB, Emmy is 
+part of  the fourth supercomputer generation of the HLRN\footnote{Norddeutscher Verbund für Hoch- 
+und Höchstleistungsrechnen \url{https://www.hlrn.de/}}. It can be used by all HLRN and NHR users.
+Ranking 133th at the TOP500\footnote{As of November 2023.}, Emmy is the biggest cluster hosted by
+the \ac{GWDG}. It consists of 111,464 CPU Cores distributed over 1423 compute nodes resulting 
+in a total peak compute power of 5.95 PetaFLOP/s.
+\item \textbf{Grete}: Grete is a GPU \ac{HPC} cluster, formally part of the NHR system.
+The system partition features XXXXXXX with four NVIDIA A100 GPUs each, connected through fast
+Infiniband fabric. Grete is OUTDATED AAA
 %   - Grete
-%     - Top 500 Ranking: ...
-%     - <https://gwdg.de/about-us/gwdg-news/2023/GN_3-2023_www.pdf>
-%   - CARO
-%     - Top 500 Ranking: ...
-%     - User Group: DLR
-%     - Im Betrieb seit 18.Juli 2022
-%       - <https://www.dlr.de/de/aktuelles/nachrichten/2022/03/20220718_dlr-nimmt-neuen-supercomputer-in-goettingen-in-betrieb>
-%     - Total compute power: ...
-% - Importance of Monitoring
-%   - Look at Slides
+%     - Top 500 Ranking: and Green500
+\item \textbf{CARO}\cite{CARO}: Analagously to Emmy provided for the NHR, CARO is a compute cluster
+hosted for the DLR\footnote{Deutsches Zentrum für Luft- und Raumfahrt \url{https://www.dlr.de/en}}.
+With its 1364 compute nodes with 175,744 CPU Cores and 3.46 PetaFLOP/s it ranks 228th on TOP500.
+\end{itemize}
+
+
+As the sheer number of nodes makes individually inspecting each one impossible, a centralized
+monitoring solution is required. Beyond getting an basic understanding on which node is alive, 
+monitoring systems serve several important purposes. With an aggregated view, system admins can
+understand the usage pattern of users. Furthermore, it can be used as a means of load balancing 
+for detecting preventable bottlenecks such as suboptimal job queue usage. Additionally, monitoring
+allows for better demand analysis and forecasting, allowing for more efficient, just in time 
+hardware upgrades.
+
 \subsection{Goals and Contributions}
-% - Warum wir das eigentlich machen...
-%   - bla bla Unifizierung des Monitorings
-%   - Evaluation ob viable
-% - Contributions:
-%   - Evaluation der Skalierbarkeit von prometheus
-%   - Evaluation der Skalierbarkeit von node exporter
-%   - Performanceauswirkungen von node exporter auf laufende Programme
+
+As the time of this writing, the GWDG has two different, Grafana-based monitoring solutions for 
+the \ac{SCC} and Emmy/Grete. The goal of this report is to evaluate the performance viability of
+unifying both monitoring solutions, replacing \ac{SCC}'s InfluxDB\footnote{
+\url{https://www.influxdata.com/products/influxdb-overview/}} and Telegraf\footnote{
+\url{https://www.influxdata.com/time-series-platform/telegraf/}} with Prometheus and 
+\texttt{node\_exporter}.
+As part of this, the following contributions were made:
+\begin{itemize}
+\item Designing a methodology for benchmarking a pull-based monitoring system.
+\item Designing a methodology for benchmarking a pull-based monitoring client daemon, both in 
+terms of throughput and the performance degradation caused to typical, throughput-oriented 
+\ac{HPC} load.
+\item Benchmarking the performance and scalability of Prometheus for a \ac{HPC} use case.
+\item Benchmarking the performance and performance penalty of \texttt{node\_exporter} for a 
+\ac{HPC} use case.
+\end{itemize}
+
 \subsubsection{Structure}
-% Könnte man sogar bereits schreiben
+Starting with Section 2, the general topics of monitoring, time series databases and
+Prometheus get introduced. Related work about time series database performance will be analyzed.
+After that, in Section 3, the benchmark methodology for both Prometheus itself as well as
+\texttt{node\_exporter} will be explained. Then, in Section 4, the results of those benchmarks
+will be shown. After a short discussion in Section 5, the work will be concluded in Section 6.
+
 \section{Background and Related Work}
 \subsection{Monitoring}
 % - typical architecture with graph
