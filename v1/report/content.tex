@@ -28,11 +28,16 @@
 %     - Total compute power: ...
 % - Importance of Monitoring
 %   - Look at Slides
+\subsection{Goals and Contributions}
 % - Warum wir das eigentlich machen...
 %   - bla bla Unifizierung des Monitorings
-\subsection{Goals and Contributions}
+%   - Evaluation ob viable
+% - Contributions:
+%   - Evaluation der Skalierbarkeit von prometheus
+%   - Evaluation der Skalierbarkeit von node exporter
+%   - Performanceauswirkungen von node exporter auf laufende Programme
 \subsubsection{Structure}
-
+% Könnte man sogar bereits schreiben
 \section{Background and Related Work}
 \subsection{Monitoring}
 % - typical architecture with graph
@@ -45,16 +50,80 @@
 % - Grafana / Prometheus / Node Exporter 
 \subsection{Time Series Databases}
 \subsection{Prometheus}
+% TODO prometheus is not just a tsdb, what is it
 \subsection{TSDB Performance Evaluation}
+% - TODO blabla there is a lot of nosql benchmarking research but not a lot on tsdb
+% - TODO tsbs influx and victoriametrics
+%   - Commercial incentives
 
 \section{Benchmark Methodology}
 % TODO bla bla which parts to benchmark
+% Note that all code is available on GH
+%   - Dont forget the second node exporter repo
 \subsection{Setup}
-% Where I ran those benchmarks
+% - HPC cluster and my laptop
+% - Using default pre-built node exporter of version X
+%   - Except for the patched metric throughput, where we forked at commit hash X
+% - Using pre-built prometheus version 2.45.1 in an ubuntu 22.04 singularity container based on
+%   the docker image available in the repo
+% - 
 \subsection{\texttt{node\_exporter}}
+% - Welche Metriken wir beim starten aktivieren
 \subsubsection{Metric Gathering}
+% - Wie die Metriken mit green threads ge-fork-joined werden
+% - TODO How we patched it instead of mocking for the most realistic version
+%   - Show code in Appendix
 \subsubsection{End to End}
+% - We use two tools
+%   - wrk TODO
+%   - go-wrk TODO
+% - All benchmarks are measured using `vmstat 1`
+% - We have three types of benchmarks
+%   - wrk seq
+%     - Most realistic load, as one usually has a single prometheus
+%     - simplest benchmark: we just blast as fast as possible with 1 thread
+%   - wrk par
+%     - It keeps the HTTP connections open for maximizing throughput.
+%     - While it maximizes throughput, it is not realistic as prom wouldnt do that!
+%     - scale along threads and HTTP connections
+%   - go-wrk par
+%     - it uses the same go `net` lib as prom
+%     - It doesnt keep connections open but is highly parallel with go's green threading model
+%     - Scale along go-threads
+% - For the parallel benchmarks, we start it with some kind of parallelism for some amount
+%   then increase parallelism in a step and so on and so fourth:
+%   - We also scale along the axis of number of processe consumed by node exporter through the
+%     GOMAXPROCS
+%     - Note that even with n=1 go threads can still highly improve performance by fixing I/O idle
+% - Fully automatic pipeline
+\subsubsection{Jitter}
+% - Why we think this could be a problem
+%   - As mentioned before it spawns up several green threads
+%   - Thus more memory footprint, thus potentially wasting the whole CPU cache
 \subsection{Prometheus}
+% - All benchmarks are measured using `vmstat 1`
+
+% - We mocked node exporter
+%   - TODO fastapi 0.104 uvicorn 0.24 single route
+%   - TODO only integers, configurable amount of metrics, all nodes have same metrics
+%   - TODO how we did randomness with urandom times mersenne warmup
+%   - TODO how we count the requests to see whether sth is skipped
+%     - Locking global counter
+%     - asynccontextmanager
+%     - unique filename through pid
+
+% - High level (automatized) workflow.
+%   - Give number of mock clients as cli param by providing a port range
+%   - Create a dynamic prom cfg for those ports and a 10sec interval to bind-mount in via
+%     singularity
+%   - spawn all python mock processes in the port range, 1 process per port
+%   - Start `vmstat 1`
+%   - Start the singularity container with prometheus and the tmp config as well as the 
+%     data directory binded in
+%     - Explain that the data directory is needed for write ops in footnote
+%   - sleep for the amount of the benchmark
+%   - terminate prom, then vmstat, then all mock exporter
+%     - Terminate == SIGTERM
 
 \section{Results}
 \subsection{\texttt{node\_exporter}}
@@ -63,5 +132,8 @@
 \section{Discussion}
 % Node Exporter:
 % - we used /dev/urandom, not perlin noise. This is less realistic but less overhead
+%   - Even more, the aforementioned tsbs has some predefined data gen
+%     - Also they split up the step to avoid the overhead; for us too much IO overhead
+%       - Note that we have a convert script to JSON in the repo
 
 \section{Conclusion}
