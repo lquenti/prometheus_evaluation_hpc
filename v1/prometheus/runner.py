@@ -14,7 +14,7 @@ if len(sys.argv) != 3 or not (sys.argv[1].isdigit() and sys.argv[2].isdigit()):
     sys.exit(1)
 PORT_RANGE = (int(sys.argv[1]), int(sys.argv[2]))
 
-BENCHMARK_TIME_SECS = 60*5
+BENCHMARK_TIME_SECS = 60*10
 PATH_TO_UVICORN = "./venv/bin/uvicorn"
 PATH_TO_PROMETHEUS_SINGULARITY = "./container/prometheus.sif"
 TIME_TO_START = 2*(PORT_RANGE[1] - PORT_RANGE[0])
