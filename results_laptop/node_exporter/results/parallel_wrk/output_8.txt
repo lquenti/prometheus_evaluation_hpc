@@ -1,0 +1,537 @@
+stdout:
+--------------------------------------------------------
+Running benchmark with 1 threads and 1 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 1 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    20.09us   25.86us   2.10ms   98.32%
+    Req/Sec    53.84k     5.79k   62.00k    64.68%
+  1076015 requests in 20.10s, 1.08GB read
+Requests/sec:  53532.87
+Transfer/sec:     55.04MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 1 connections for 20s
+Usage: wrk <options> <url>                            
+  Options:                                            
+    -c, --connections <N>  Connections to keep open   
+    -d, --duration    <T>  Duration of test           
+    -t, --threads     <N>  Number of threads to use   
+                                                      
+    -s, --script      <S>  Load Lua script file       
+    -H, --header      <H>  Add header to request      
+        --latency          Print latency statistics   
+        --timeout     <T>  Socket/request timeout     
+    -v, --version          Print version details      
+                                                      
+  Numeric arguments may include a SI unit (1k, 1M, 1G)
+  Time arguments may include a time unit (2s, 2m, 2h)
+--------------------------------------------------------
+Running benchmark with 4 threads and 1 connections for 20s
+Usage: wrk <options> <url>                            
+  Options:                                            
+    -c, --connections <N>  Connections to keep open   
+    -d, --duration    <T>  Duration of test           
+    -t, --threads     <N>  Number of threads to use   
+                                                      
+    -s, --script      <S>  Load Lua script file       
+    -H, --header      <H>  Add header to request      
+        --latency          Print latency statistics   
+        --timeout     <T>  Socket/request timeout     
+    -v, --version          Print version details      
+                                                      
+  Numeric arguments may include a SI unit (1k, 1M, 1G)
+  Time arguments may include a time unit (2s, 2m, 2h)
+--------------------------------------------------------
+Running benchmark with 8 threads and 1 connections for 20s
+Usage: wrk <options> <url>                            
+  Options:                                            
+    -c, --connections <N>  Connections to keep open   
+    -d, --duration    <T>  Duration of test           
+    -t, --threads     <N>  Number of threads to use   
+                                                      
+    -s, --script      <S>  Load Lua script file       
+    -H, --header      <H>  Add header to request      
+        --latency          Print latency statistics   
+        --timeout     <T>  Socket/request timeout     
+    -v, --version          Print version details      
+                                                      
+  Numeric arguments may include a SI unit (1k, 1M, 1G)
+  Time arguments may include a time unit (2s, 2m, 2h)
+--------------------------------------------------------
+Running benchmark with 16 threads and 1 connections for 20s
+Usage: wrk <options> <url>                            
+  Options:                                            
+    -c, --connections <N>  Connections to keep open   
+    -d, --duration    <T>  Duration of test           
+    -t, --threads     <N>  Number of threads to use   
+                                                      
+    -s, --script      <S>  Load Lua script file       
+    -H, --header      <H>  Add header to request      
+        --latency          Print latency statistics   
+        --timeout     <T>  Socket/request timeout     
+    -v, --version          Print version details      
+                                                      
+  Numeric arguments may include a SI unit (1k, 1M, 1G)
+  Time arguments may include a time unit (2s, 2m, 2h)
+--------------------------------------------------------
+Running benchmark with 1 threads and 10 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    56.09us   74.04us   7.89ms   96.85%
+    Req/Sec   148.79k    29.69k  193.14k    65.67%
+  2973549 requests in 20.10s, 2.99GB read
+Requests/sec: 147936.99
+Transfer/sec:    152.09MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 10 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    66.07us  109.57us   6.73ms   94.14%
+    Req/Sec    90.11k    13.80k  141.84k    91.52%
+  3593225 requests in 20.10s, 3.61GB read
+Requests/sec: 178774.39
+Transfer/sec:    183.79MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 10 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    60.57us  145.18us  16.28ms   97.64%
+    Req/Sec    36.75k     5.73k   58.80k    90.78%
+  2936288 requests in 20.10s, 2.95GB read
+Requests/sec: 146088.38
+Transfer/sec:    150.19MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 10 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    71.12us  229.09us  21.83ms   98.35%
+    Req/Sec    17.82k     2.90k   29.30k    89.60%
+  2845845 requests in 20.10s, 2.86GB read
+Requests/sec: 141594.27
+Transfer/sec:    145.57MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 10 connections for 20s
+Usage: wrk <options> <url>                            
+  Options:                                            
+    -c, --connections <N>  Connections to keep open   
+    -d, --duration    <T>  Duration of test           
+    -t, --threads     <N>  Number of threads to use   
+                                                      
+    -s, --script      <S>  Load Lua script file       
+    -H, --header      <H>  Add header to request      
+        --latency          Print latency statistics   
+        --timeout     <T>  Socket/request timeout     
+    -v, --version          Print version details      
+                                                      
+  Numeric arguments may include a SI unit (1k, 1M, 1G)
+  Time arguments may include a time unit (2s, 2m, 2h)
+--------------------------------------------------------
+Running benchmark with 1 threads and 25 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 25 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   116.87us  106.49us   6.61ms   94.00%
+    Req/Sec   142.66k    24.61k  200.01k    82.50%
+  2838087 requests in 20.00s, 2.85GB read
+Requests/sec: 141899.84
+Transfer/sec:    145.88MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 25 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 25 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   148.66us  298.32us  10.90ms   94.89%
+    Req/Sec    91.98k    17.78k  154.05k    86.53%
+  3668957 requests in 20.10s, 3.68GB read
+Requests/sec: 182535.51
+Transfer/sec:    187.66MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 25 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 25 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   194.64us  342.23us  11.43ms   92.97%
+    Req/Sec    47.39k     8.51k   94.50k    88.00%
+  3772100 requests in 20.01s, 3.79GB read
+Requests/sec: 188539.01
+Transfer/sec:    193.83MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 25 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 25 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   244.36us  445.49us   7.87ms   92.22%
+    Req/Sec    22.58k     4.33k   49.17k    84.56%
+  3596386 requests in 20.02s, 3.61GB read
+Requests/sec: 179660.23
+Transfer/sec:    184.70MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 25 connections for 20s
+Running 20s test @ http://localhost:9100
+  16 threads and 25 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   160.60us  373.32us  11.24ms   94.98%
+    Req/Sec    10.53k     2.02k   22.49k    85.85%
+  3363389 requests in 20.10s, 3.38GB read
+Requests/sec: 167334.22
+Transfer/sec:    172.03MB
+--------------------------------------------------------
+Running benchmark with 1 threads and 50 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   237.64us  182.39us   2.84ms   90.13%
+    Req/Sec   134.00k    20.35k  199.64k    90.00%
+  2665996 requests in 20.00s, 2.68GB read
+Requests/sec: 133284.63
+Transfer/sec:    137.02MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 50 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   247.22us  290.64us   6.27ms   88.54%
+    Req/Sec    93.89k    15.47k  154.60k    92.50%
+  3735911 requests in 20.00s, 3.75GB read
+Requests/sec: 186786.40
+Transfer/sec:    192.03MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 50 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   317.94us  388.47us   6.47ms   87.63%
+    Req/Sec    48.16k     8.72k   96.62k    89.25%
+  3833380 requests in 20.01s, 3.85GB read
+Requests/sec: 191548.62
+Transfer/sec:    196.92MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 50 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   448.84us  668.19us  14.19ms   89.07%
+    Req/Sec    22.78k     4.57k   43.40k    82.44%
+  3630892 requests in 20.02s, 3.65GB read
+Requests/sec: 181329.39
+Transfer/sec:    186.42MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 50 connections for 20s
+Running 20s test @ http://localhost:9100
+  16 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   734.22us    1.30ms  25.60ms   88.97%
+    Req/Sec    10.66k     2.32k   27.28k    80.94%
+  3395588 requests in 20.01s, 3.41GB read
+Requests/sec: 169699.30
+Transfer/sec:    174.46MB
+--------------------------------------------------------
+Running benchmark with 1 threads and 100 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   413.83us  238.48us   3.34ms   86.63%
+    Req/Sec   137.90k    20.91k  204.13k    90.00%
+  2743397 requests in 20.00s, 2.75GB read
+Requests/sec: 137139.80
+Transfer/sec:    140.99MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 100 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   433.28us  453.12us   8.50ms   86.61%
+    Req/Sec    96.42k    15.87k  157.92k    92.25%
+  3836531 requests in 20.00s, 3.85GB read
+Requests/sec: 191810.04
+Transfer/sec:    197.19MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 100 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   621.34us  710.42us  11.17ms   86.26%
+    Req/Sec    49.47k     9.09k  107.72k    87.50%
+  3941612 requests in 20.03s, 3.96GB read
+Requests/sec: 196759.23
+Transfer/sec:    202.28MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 100 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   809.59us    1.09ms  17.40ms   87.29%
+    Req/Sec    23.69k     4.78k   47.18k    81.06%
+  3778582 requests in 20.05s, 3.79GB read
+Requests/sec: 188476.48
+Transfer/sec:    193.77MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 100 connections for 20s
+Running 20s test @ http://localhost:9100
+  16 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.51ms    2.54ms  39.65ms   88.13%
+    Req/Sec    10.85k     2.96k   91.65k    86.38%
+  3456919 requests in 20.10s, 3.47GB read
+Requests/sec: 172000.42
+Transfer/sec:    176.83MB
+--------------------------------------------------------
+Running benchmark with 1 threads and 150 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 150 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   587.03us  264.56us   5.02ms   87.49%
+    Req/Sec   137.44k    20.83k  202.68k    90.00%
+  2734732 requests in 20.00s, 2.75GB read
+Requests/sec: 136707.48
+Transfer/sec:    140.54MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 150 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 150 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   605.50us  625.67us  10.53ms   86.69%
+    Req/Sec    98.55k    16.20k  161.15k    92.50%
+  3922408 requests in 20.00s, 3.94GB read
+Requests/sec: 196074.91
+Transfer/sec:    201.58MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 150 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 150 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   840.84us    0.91ms  12.09ms   86.02%
+    Req/Sec    50.55k     9.33k  104.38k    86.12%
+  4028709 requests in 20.03s, 4.04GB read
+Requests/sec: 201166.17
+Transfer/sec:    206.81MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 150 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 150 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.26ms    1.78ms  36.48ms   87.82%
+    Req/Sec    24.02k     5.34k   53.83k    77.94%
+  3834430 requests in 20.07s, 3.85GB read
+Requests/sec: 191024.92
+Transfer/sec:    196.39MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 150 connections for 20s
+Running 20s test @ http://localhost:9100
+  16 threads and 150 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.49ms    4.16ms  62.90ms   87.58%
+    Req/Sec    11.06k     3.02k   44.53k    80.96%
+  3526668 requests in 20.10s, 3.54GB read
+Requests/sec: 175456.04
+Transfer/sec:    180.38MB
+--------------------------------------------------------
+Running benchmark with 1 threads and 200 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   782.81us  302.66us   6.15ms   83.74%
+    Req/Sec   134.29k    20.49k  200.65k    90.00%
+  2673109 requests in 20.01s, 2.68GB read
+Requests/sec: 133583.52
+Transfer/sec:    137.33MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 200 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   781.76us  797.15us  14.06ms   87.00%
+    Req/Sec    99.30k    16.45k  163.72k    92.75%
+  3952439 requests in 20.01s, 3.97GB read
+Requests/sec: 197561.28
+Transfer/sec:    203.11MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 200 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.10ms    1.17ms  18.07ms   86.19%
+    Req/Sec    51.02k     9.62k   97.19k    86.62%
+  4069105 requests in 20.05s, 4.09GB read
+Requests/sec: 202914.46
+Transfer/sec:    208.61MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 200 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.77ms    2.57ms  75.70ms   88.34%
+    Req/Sec    24.16k     5.48k   49.35k    77.55%
+  3858959 requests in 20.09s, 3.87GB read
+Requests/sec: 192041.87
+Transfer/sec:    197.43MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 200 connections for 20s
+Running 20s test @ http://localhost:9100
+  16 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     3.32ms    5.51ms  74.51ms   87.67%
+    Req/Sec    11.14k     2.98k   33.95k    76.94%
+  3548494 requests in 20.01s, 3.56GB read
+Requests/sec: 177308.15
+Transfer/sec:    182.28MB
+--------------------------------------------------------
+Running benchmark with 1 threads and 300 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 300 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.22ms  390.58us   5.87ms   78.27%
+    Req/Sec   127.48k    19.45k  188.57k    90.00%
+  2541990 requests in 20.08s, 2.55GB read
+Requests/sec: 126594.74
+Transfer/sec:    130.15MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 300 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 300 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.22ms    1.29ms  19.13ms   86.62%
+    Req/Sec    97.47k    16.80k  167.78k    92.25%
+  3879099 requests in 20.03s, 3.89GB read
+Requests/sec: 193666.31
+Transfer/sec:    199.10MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 300 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 300 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.69ms    1.81ms  23.66ms   86.01%
+    Req/Sec    50.39k    10.71k  106.05k    82.46%
+  4013954 requests in 20.10s, 4.03GB read
+Requests/sec: 199707.37
+Transfer/sec:    205.31MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 300 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 300 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.61ms    3.71ms  68.96ms   87.96%
+    Req/Sec    24.05k     6.15k   56.74k    75.82%
+  3831144 requests in 20.07s, 3.85GB read
+Requests/sec: 190904.19
+Transfer/sec:    196.26MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 300 connections for 20s
+Running 20s test @ http://localhost:9100
+  16 threads and 300 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     5.18ms    8.52ms 107.14ms   87.37%
+    Req/Sec    11.16k     3.58k   58.47k    78.36%
+  3558845 requests in 20.10s, 3.57GB read
+Requests/sec: 177071.91
+Transfer/sec:    182.04MB
+--------------------------------------------------------
+Running benchmark with 1 threads and 400 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.70ms  477.46us   7.51ms   78.32%
+    Req/Sec   121.23k    18.59k  181.37k    88.44%
+  2411523 requests in 20.04s, 2.42GB read
+Requests/sec: 120351.91
+Transfer/sec:    123.73MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 400 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.67ms    1.79ms  24.53ms   86.63%
+    Req/Sec    97.01k    16.78k  165.81k    92.25%
+  3863199 requests in 20.04s, 3.88GB read
+Requests/sec: 192741.96
+Transfer/sec:    198.15MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 400 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.23ms    2.36ms  29.18ms   86.26%
+    Req/Sec    49.77k    10.71k  106.61k    82.41%
+  3962090 requests in 20.06s, 3.98GB read
+Requests/sec: 197549.82
+Transfer/sec:    203.09MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 400 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     3.30ms    4.46ms  70.60ms   87.37%
+    Req/Sec    24.18k     6.75k   64.77k    74.51%
+  3856349 requests in 20.10s, 3.87GB read
+Requests/sec: 191887.89
+Transfer/sec:    197.27MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 400 connections for 20s
+Running 20s test @ http://localhost:9100
+  16 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     6.70ms   10.83ms 173.72ms   87.57%
+    Req/Sec    11.09k     3.61k   39.71k    77.97%
+  3537316 requests in 20.09s, 3.55GB read
+Requests/sec: 176059.33
+Transfer/sec:    181.00MB
+--------------------------------------------------------
+Running benchmark with 1 threads and 500 connections for 20s
+Running 20s test @ http://localhost:9100
+  1 threads and 500 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.20ms  496.30us   8.14ms   79.77%
+    Req/Sec   115.73k    17.31k  168.50k    88.94%
+  2305133 requests in 20.10s, 2.31GB read
+Requests/sec: 114690.02
+Transfer/sec:    117.91MB
+--------------------------------------------------------
+Running benchmark with 2 threads and 500 connections for 20s
+Running 20s test @ http://localhost:9100
+  2 threads and 500 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.99ms    2.07ms  38.55ms   87.75%
+    Req/Sec    95.09k    16.33k  161.91k    92.25%
+  3789280 requests in 20.07s, 3.80GB read
+Requests/sec: 188784.58
+Transfer/sec:    194.08MB
+--------------------------------------------------------
+Running benchmark with 4 threads and 500 connections for 20s
+Running 20s test @ http://localhost:9100
+  4 threads and 500 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.74ms    2.89ms  43.86ms   86.74%
+    Req/Sec    49.83k    11.31k  108.76k    82.04%
+  3968811 requests in 20.08s, 3.98GB read
+Requests/sec: 197686.63
+Transfer/sec:    203.23MB
+--------------------------------------------------------
+Running benchmark with 8 threads and 500 connections for 20s
+Running 20s test @ http://localhost:9100
+  8 threads and 500 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     3.88ms    5.06ms  91.14ms   86.96%
+    Req/Sec    24.17k     7.05k   64.06k    75.40%
+  3844106 requests in 20.08s, 3.86GB read
+Requests/sec: 191487.12
+Transfer/sec:    196.86MB
+--------------------------------------------------------
+Running benchmark with 16 threads and 500 connections for 20s
+Running 20s test @ http://localhost:9100
+  16 threads and 500 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     6.95ms   10.63ms 121.16ms   87.12%
+    Req/Sec    11.07k     3.66k   41.03k    80.03%
+  3538412 requests in 20.09s, 3.55GB read
+Requests/sec: 176135.83
+Transfer/sec:    181.08MB
+stderr:
+number of connections must be >= threads
+number of connections must be >= threads
+number of connections must be >= threads
+number of connections must be >= threads
+number of connections must be >= threads

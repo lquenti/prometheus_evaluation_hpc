@@ -1,0 +1,10 @@
+stdout:
+Running 1m test @ http://localhost:9100
+  1 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    76.02us   87.11us   6.05ms   93.51%
+    Req/Sec   122.41k    15.53k  181.78k    92.51%
+  7317897 requests in 1.00m, 7.35GB read
+Requests/sec: 121762.04
+Transfer/sec:    125.18MB
+stderr:
