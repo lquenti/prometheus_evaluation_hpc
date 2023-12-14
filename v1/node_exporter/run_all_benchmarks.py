@@ -61,16 +61,14 @@ def run_benchmark_generic(benchmark_type: BenchmarkType, number_of_processes):
     result = subprocess.run(
         [benchmark_type.path_to_script],
         capture_output=True,
-        text=True
+        text=True,
+        stderr=subprocess.STDOUT # merge
     )
 
     kill(vmstat.pid)
 
     with open(file, 'w') as fp:
-        fp.write("stdout:\n")
         fp.write(result.stdout)
-        fp.write("stderr:\n")
-        fp.write(result.stderr)
 
 def run_benchmark_sequential(number_of_processes):
     run_benchmark_generic(BENCHMARKTYPE_SEQUENTIAL, number_of_processes)
