@@ -9,10 +9,13 @@ for C in "${CONNECTIONS[@]}"
 do
   for T in "${THREADS[@]}"
   do
-    echo "--------------------------------------------------------"
-    echo "Running benchmark with $T threads and $C connections for ${DURATION}s"
-    wrk -t${T} -c${C} -d${DURATION}s $TARGET_URL
-    sleep 2
+    if [ $C -ge $T ]
+    then
+      echo "--------------------------------------------------------"
+      echo "Running benchmark with $T threads and $C connections for ${DURATION}s"
+      wrk -t${T} -c${C} -d${DURATION}s $TARGET_URL
+      sleep 2
+    fi
   done
 done
 
