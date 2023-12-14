@@ -1,0 +1,3 @@
+[submodule "v1/patched_node_exporter"]
+	path = v1/patched_node_exporter
+	url = https://github.com/lquenti/node_exporter
