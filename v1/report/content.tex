@@ -31,7 +31,6 @@ hosted for the DLR\footnote{Deutsches Zentrum für Luft- und Raumfahrt \url{http
 With its 1364 compute nodes with 175,744 CPU Cores and 3.46 PetaFLOP/s it ranks 228th on TOP500.
 \end{itemize}
 
-
 As the sheer number of nodes makes individually inspecting each one impossible, a centralized
 monitoring solution is required. Beyond getting an basic understanding on which node is alive, 
 monitoring systems serve several important purposes. With an aggregated view, system admins can
@@ -66,23 +65,129 @@ After that, in Section 3, the benchmark methodology for both Prometheus itself a
 \texttt{node\_exporter} will be explained. Then, in Section 4, the results of those benchmarks
 will be shown. After a short discussion in Section 5, the work will be concluded in Section 6.
 
-\section{Background and Related Work}
-\subsection{Monitoring}
-% - typical architecture with graph
-% - On Premise vs Cloud based
-% - push vs pull
-\subsubsection{Current Architecture: GWDG SCC}
-% - TIG with Influxv2 and Flux
-% - Still using InfluxQL
-\subsubsection{Current Architecture: HLRN}
-% - Grafana / Prometheus / Node Exporter 
-\subsection{Time Series Databases}
+\section{Background: Monitoring}
+Monitoring consists of 2 important components. On the one hand, it is the continuous 
+collection of mostly numerical data and metrics from various systems. On the other hand, it 
+is the aggregation and analysis of this collected data/metrics within a certain period of 
+time, up to real-time monitoring.
+
+Several different kinds of metrics can be analyzed using monitoring systems. From typical
+system metrics such as CPU, RAM, disk, or network usage to monitoring whole server racks
+with power and cooling statistics as well as application specific metrics such as databases
+or webservers.
+
+Most monitoring systems follow the collector/database/dashboard architecture. On each node,
+a \emph{collector} is running as a daemon, exposing the internal metrics for an centralized
+database, aggregating all nodes. Those databases are usually either general, document-based
+NoSQL databases such as MongoDB\footnote{\url{https://www.mongodb.com/}} and 
+Elasticsearch\footnote{\url{https://www.elastic.co/elasticsearch}} or specialized \acp{TSDB}
+such as InfluxDB\footnote{\url{https://www.influxdata.com/}} or Prometheus\footnote{
+\url{https://prometheus.io/}}.
+
+To provide an taxonomy, most monitoring systems can be categorized on two dimensions:
+
+\paragraph{Cloud-based or On-Premise:} Monitoring systems can either be managed, cloud-based 
+or self-hosted, on-premise services. Both have their advantages and disadvantages.
+
+Cloud-based monitoring services such as Datadog\footnote{\url{https://www.datadoghq.com/}}
+or Splunk\footnote{\url{https://www.splunk.com/}} have several advantages. By using an 
+externally hosted service, it simplifies the overall monitoring maintenance. By not requiring
+hardware for another service, it lowers the barrier of entry. Furthermore, since the whole
+monitoring stack is written by the same manufacturer, it allows for tighter integration.
+
+On-Premise hostings, on the other hand, also have several advantages over the cloud-based 
+solutions. Since they are part of the local network, they are easier to integrate into current
+infrastructure, even those parts that one doesn't want to publically expose such as Active 
+Directory. Additionally, it mitigates potential security and privacy risks, especially for data
+that could either pose a security risk such as showing applicable vulnerabilities or data that is
+legally not allowed to be processed off-premise such as sentitive user data. Lastly, while the 
+software stack is more heterogenous, it allows for more specialization based on the users needs.
+
+\paragraph{Push or Pull:} There are two different paragigms in data gathering:
+
+In the more common \emph{push} paradigm, the data-collecting daemon sends the data to an API 
+endpoint. This has multiple advantages: First, it is easier for firewalls, because it does not
+need any inbound connection establishment. It is also less overhead for the \ac{TSDB} since it
+just needs to passively recieve the data. Lastly, it is easier to send non-aggregated raw data,
+since the client can decide when it has enough data to send to the database.
+
+In the \emph{pull} paradigm, the \ac{TSDB} itself iterates over, and fetches all metrics, which
+are exposed as newline-seperated key-value pairs through an specified HTTP-endpoint. The biggest
+advantage is that the \ac{TSDB} can't be overwhelmed with requests since it implicitly rate-limits
+itself through the amounts of outgoing requests. Furthermore, it allows for lazy and just-in-time 
+fetching of data, reducing the overall overhead in the network.
+
+The \ac{GWDG} uses both push and pull \acp{TSDB} in the \ac{SCC} and Emmy cluster respectively. 
+
+\subsection{Current Architecture: GWDG SCC}
+
+The \ac{SCC} uses an push-based architecture: On every node, the plugin-powered Telegraf 
+daemon collects all metrics, which are then send to the InfluxDB \ac{TSDB}. Finally, this database
+gets queried using the legacy InfluxQL by Grafana\footnote{\url{https://grafana.com/}} as 
+configured in the dashboards.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./assets/influx.jpeg}
+  \caption{The InfluxDB-based push-setup for the SCC.}
+\end{figure}
+
+
+\subsection{Current Architrecture: HLRN Emmy}
+For Emmy, a pull-based architecture is used. The node\_exporter\footnote{
+\url{https://github.com/prometheus/node_exporter}} exposes the \texttt{/metrics} endpoint, to which
+the Prometheus database connects to when fetching the data. The aggregated data also gets queried
+through pre-made Grafana dashboards with PromQL.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./assets/prometheus.jpeg}
+  \caption{The Prometheus-based pull-setup for Emmy.}
+\end{figure}
+
 \subsection{Prometheus}
-% TODO prometheus is not just a tsdb, what is it
+More than just a \ac{TSDB}, Prometheus is a pull-based systems monitoring toolkit. Originally 
+developed at SoundCloud, it is now a non-commercial open source project hosted by the \ac{CNCF},
+which is a part of the Linux Foundation. It expoeses the pull metrics via \texttt{node\_exporter},
+which then get scraped by the Prometheus server into its \ac{TSDB}, which can then be queried through
+PromQL, its own query language.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{./assets/promarch.png}
+  \caption{Prometheus high level architecture \cite{promarch}.}
+\end{figure}
+
 \subsection{TSDB Performance Evaluation}
-% - TODO blabla there is a lot of nosql benchmarking research but not a lot on tsdb
-% - TODO tsbs influx and victoriametrics
-%   - Commercial incentives
+While there are several papers on \ac{TSDB} performance evaluation, most benchmarking was mainly
+done by different vendors. In this section, we will cover one formal publication as well as two
+industry standards for push and pull based database benchmarking.
+
+The most actively maintained academic benchmark was first published by Liu and Yuan in 2019 \cite{benchmark_paper}.
+It is maintained to this day. While it surrently only supports Push-based metrics, it supports not
+only traditional \ac{TSDB} such as InfluxDB or TimeScaleDB but also classical SQL-based databases
+such as SQLite or Microsoft SQL Server. It also supports several benchmarking scenarios testing
+both write and query performance.
+
+But the canonical benchmarking suite for push-based \acp{TSDB} is the \ac{TSBS} \cite{tsbs}, 
+maintained by Timescale, the maintainer of timescaledb\footnote{\url{https://www.timescale.com/}}, a 
+time-series database packaged as an PostgresSQL. Initially developed by an external contractor
+for InfluxData as \texttt{influxdb-comparisons} \cite{influxcomp}, it supports most \acp{TSDB}.
+It is split into 3 different, purely distinct phases: Data and query generation, data insertion,
+and query execution. This is done to minimize the load generator overhead for more reliable results.
+
+Due to the constant load configured on the server side instead of the load generator side, pull-based
+\ac{TSDB} benchmarking is more difficult. Although still pretty new, the only well maintained
+benchmark suite for prometheus-like systems is \texttt{prometheus-benchmark} \cite{prombench}, developed by 
+VictoriaMetrics\footnote{\url{https://victoriametrics.com/}}, a competitor to Prometheus. It supports
+VictoriaMetrics as well as Prometheus based Grafana's Mimir\footnote{\url{https://grafana.com/oss/mimir/}}
+and the \ac{CNCF}-maintained Prometheus clustering solutions Cortex\footnote{\url{https://github.com/cortexproject/cortex}}
+and Thanos\footnote{\url{https://github.com/thanos-io/thanos/}}. Unfortunately, it can not be used for
+this benchmark as it expects a Kubernetes-based cloud environment while this use case is around \ac{HPC} usage.
+
+Unfortunately, due to the competitive nature of the highly funded No-SQL startup space, both
+benchmarks suits are susceptible to commercial incentives.
+
 
 \section{Benchmark Methodology}
 % TODO bla bla which parts to benchmark
