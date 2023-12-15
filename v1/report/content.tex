@@ -24,10 +24,8 @@ Ranking 133th at the TOP500\footnote{As of November 2023.}, Emmy is the biggest 
 the \ac{GWDG}. It consists of 111,464 CPU Cores distributed over 1423 compute nodes resulting 
 in a total peak compute power of 5.95 PetaFLOP/s.
 \item \textbf{Grete}: Grete is a GPU \ac{HPC} cluster, formally part of the NHR system.
-The system partition features XXXXXXX with four NVIDIA A100 GPUs each, connected through fast
-Infiniband fabric. Grete is OUTDATED AAA
-%   - Grete
-%     - Top 500 Ranking: and Green500
+It features 158 nodes with 2 AMD Epyc 7513 CPUs and four NVIDIA A100 GPUs each, connected through fast
+Infiniband fabric. As of November 2023, Grete is rank 142 of the TOP500.
 \item \textbf{CARO}\cite{CARO}: Analagously to Emmy provided for the NHR, CARO is a compute cluster
 hosted for the DLR\footnote{Deutsches Zentrum für Luft- und Raumfahrt \url{https://www.dlr.de/en}}.
 With its 1364 compute nodes with 175,744 CPU Cores and 3.46 PetaFLOP/s it ranks 228th on TOP500.
@@ -91,8 +89,13 @@ will be shown. After a short discussion in Section 5, the work will be concluded
 % Note that all code is available on GH
 %   - Dont forget the second node exporter repo
 \subsection{Setup}
-% - HPC cluster and my laptop
-% - Using default pre-built node exporter of version X
+% - besides for the jitter benchmark, the following hardware was used
+%   - A gcn2 type node from Emmy
+%   - 2 x Xeon Platinum 9242 with 48 cores each
+%   - 376GB ram
+% - for the jitter benchmarks, I wanted to have a very minimal operating system
+%   - Thus I installed X on a local (fast) USB stick
+% - Using pre-installed version of node exporter
 %   - Except for the patched metric throughput, where we forked at commit hash X
 % - Using pre-built prometheus version 2.45.1 in an ubuntu 22.04 singularity container based on
 %   the docker image available in the repo
