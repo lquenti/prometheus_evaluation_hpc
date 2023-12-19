@@ -1,0 +1,132 @@
+--------------------------------------------------------
+Running benchmark with 25 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  25 goroutine(s) running concurrently
+2597816 requests in 56.90396245s, 2.57GB read
+Requests/sec:		45652.64
+Transfer/sec:		46.19MB
+Avg Req Time:		547.613µs
+Fastest Request:	48.406µs
+Slowest Request:	17.078294ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 50 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  50 goroutine(s) running concurrently
+4472555 requests in 57.322557604s, 4.42GB read
+Requests/sec:		78024.34
+Transfer/sec:		78.95MB
+Avg Req Time:		640.825µs
+Fastest Request:	52.057µs
+Slowest Request:	34.693959ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 100 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  100 goroutine(s) running concurrently
+3929976 requests in 56.680652649s, 3.88GB read
+Requests/sec:		69335.40
+Transfer/sec:		70.16MB
+Avg Req Time:		1.442264ms
+Fastest Request:	50.659µs
+Slowest Request:	78.926581ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 200 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  200 goroutine(s) running concurrently
+3321966 requests in 56.404539087s, 3.28GB read
+Requests/sec:		58895.37
+Transfer/sec:		59.59MB
+Avg Req Time:		3.395852ms
+Fastest Request:	52.012µs
+Slowest Request:	134.069922ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 300 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  300 goroutine(s) running concurrently
+3396919 requests in 56.335607178s, 3.36GB read
+Requests/sec:		60297.90
+Transfer/sec:		61.01MB
+Avg Req Time:		4.975297ms
+Fastest Request:	49.668µs
+Slowest Request:	193.53818ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 400 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  400 goroutine(s) running concurrently
+3628668 requests in 56.49246309s, 3.59GB read
+Requests/sec:		64232.78
+Transfer/sec:		64.99MB
+Avg Req Time:		6.227349ms
+Fastest Request:	44.799µs
+Slowest Request:	190.242592ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 500 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  500 goroutine(s) running concurrently
+3706760 requests in 56.554570114s, 3.66GB read
+Requests/sec:		65543.07
+Transfer/sec:		66.32MB
+Avg Req Time:		7.628571ms
+Fastest Request:	55.952µs
+Slowest Request:	347.53494ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 600 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  600 goroutine(s) running concurrently
+3752930 requests in 56.636076028s, 3.71GB read
+Requests/sec:		66263.95
+Transfer/sec:		67.05MB
+Avg Req Time:		9.054697ms
+Fastest Request:	51.773µs
+Slowest Request:	1.203896882s
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 700 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  700 goroutine(s) running concurrently
+3741149 requests in 56.544754583s, 3.70GB read
+Requests/sec:		66162.62
+Transfer/sec:		66.95MB
+Avg Req Time:		10.579992ms
+Fastest Request:	53.98µs
+Slowest Request:	395.690611ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 800 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  800 goroutine(s) running concurrently
+3819795 requests in 56.373115724s, 3.77GB read
+Requests/sec:		67759.16
+Transfer/sec:		68.56MB
+Avg Req Time:		11.806521ms
+Fastest Request:	55.038µs
+Slowest Request:	1.224509824s
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 900 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  900 goroutine(s) running concurrently
+4009455 requests in 56.114505072s, 3.96GB read
+Requests/sec:		71451.31
+Transfer/sec:		72.30MB
+Avg Req Time:		12.595989ms
+Fastest Request:	53.816µs
+Slowest Request:	383.894696ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 1000 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  1000 goroutine(s) running concurrently
+4292616 requests in 56.195353215s, 4.24GB read
+Requests/sec:		76387.38
+Transfer/sec:		77.29MB
+Avg Req Time:		13.091167ms
+Fastest Request:	53.041µs
+Slowest Request:	407.490213ms
+Number of Errors:	0

@@ -1,0 +1,1032 @@
+--------------------------------------------------------
+Running benchmark with 25 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  25 goroutine(s) running concurrently
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+empty response
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+empty response
+empty response
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+redirect?
+An error occured doing request Get "http://localhost:24343": net/http: timeout awaiting response headers
+empty response
+1771890 requests in 46.307461935s, 1.75GB read
+Requests/sec:		38263.60
+Transfer/sec:		38.72MB
+Avg Req Time:		653.362µs
+Fastest Request:	51.568µs
+Slowest Request:	914.124226ms
+Number of Errors:	300
+--------------------------------------------------------
+Running benchmark with 50 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  50 goroutine(s) running concurrently
+3041838 requests in 58.173310779s, 3.01GB read
+Requests/sec:		52289.24
+Transfer/sec:		52.91MB
+Avg Req Time:		956.219µs
+Fastest Request:	51.525µs
+Slowest Request:	83.946218ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 100 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  100 goroutine(s) running concurrently
+3139010 requests in 58.329880555s, 3.10GB read
+Requests/sec:		53814.79
+Transfer/sec:		54.45MB
+Avg Req Time:		1.858225ms
+Fastest Request:	53.407µs
+Slowest Request:	87.539542ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 200 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  200 goroutine(s) running concurrently
+3102869 requests in 58.251325071s, 3.07GB read
+Requests/sec:		53266.93
+Transfer/sec:		53.90MB
+Avg Req Time:		3.754675ms
+Fastest Request:	59.916µs
+Slowest Request:	114.051434ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 300 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  300 goroutine(s) running concurrently
+2854801 requests in 57.498241538s, 2.82GB read
+Requests/sec:		49650.23
+Transfer/sec:		50.24MB
+Avg Req Time:		6.042267ms
+Fastest Request:	54.234µs
+Slowest Request:	187.449296ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 400 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  400 goroutine(s) running concurrently
+2587337 requests in 57.269230902s, 2.56GB read
+Requests/sec:		45178.48
+Transfer/sec:		45.71MB
+Avg Req Time:		8.853772ms
+Fastest Request:	62.627µs
+Slowest Request:	242.604848ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 500 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  500 goroutine(s) running concurrently
+2482820 requests in 57.113884271s, 2.45GB read
+Requests/sec:		43471.39
+Transfer/sec:		43.99MB
+Avg Req Time:		11.501817ms
+Fastest Request:	57.784µs
+Slowest Request:	213.760343ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 600 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  600 goroutine(s) running concurrently
+2540627 requests in 57.074137299s, 2.51GB read
+Requests/sec:		44514.51
+Transfer/sec:		45.04MB
+Avg Req Time:		13.478752ms
+Fastest Request:	57.401µs
+Slowest Request:	282.147125ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 700 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  700 goroutine(s) running concurrently
+2625668 requests in 57.151982125s, 2.59GB read
+Requests/sec:		45941.85
+Transfer/sec:		46.49MB
+Avg Req Time:		15.236651ms
+Fastest Request:	56.545µs
+Slowest Request:	315.312015ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 800 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  800 goroutine(s) running concurrently
+2615024 requests in 57.719809746s, 2.58GB read
+Requests/sec:		45305.49
+Transfer/sec:		45.84MB
+Avg Req Time:		17.657905ms
+Fastest Request:	61.474µs
+Slowest Request:	403.162145ms
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 900 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  900 goroutine(s) running concurrently
+2668146 requests in 57.812823905s, 2.64GB read
+Requests/sec:		46151.46
+Transfer/sec:		46.70MB
+Avg Req Time:		19.501009ms
+Fastest Request:	62.445µs
+Slowest Request:	1.065955405s
+Number of Errors:	0
+--------------------------------------------------------
+Running benchmark with 1000 goroutines for 60 seconds
+Running 60s test @ http://localhost:24343
+  1000 goroutine(s) running concurrently
+2564008 requests in 58.361956682s, 2.53GB read
+Requests/sec:		43932.87
+Transfer/sec:		44.45MB
+Avg Req Time:		22.762002ms
+Fastest Request:	58.561µs
+Slowest Request:	261.902437ms
+Number of Errors:	0
