@@ -190,31 +190,75 @@ benchmarks suits are susceptible to commercial incentives.
 
 
 \section{Benchmark Methodology}
-% TODO bla bla which parts to benchmark
-% Note that all code is available on GH
-%   - Dont forget the second node exporter repo
+This section will cover the design and methodology behind all benchmarks. In particular, the following
+benchmarks were designed as part of this report:
+
+\begin{itemize}
+  \item Measuring the isolated performance of the metric gathering function within the \texttt{node\_exporter} daemon.
+  \item Measuring the end-to-end performance of the \texttt{node\_exporter} daemon with different HTTP load generators.
+  \item Measuring the scalability of Prometheus by increasing the number of daemons to fetch from.
+  \item Measuring the performance penalty of \texttt{node\_exporter} on an running \ac{HPC} job.
+\end{itemize}
+
+Note that the code for all benchmarks \cite{my_repo} as well as the patched \texttt{node\_exporter} \cite{my_node_exporter}
+can be found on Github.
+
 \subsection{Setup}
-% - besides for the jitter benchmark, the following hardware was used
-%   - A gcn2 type node from Emmy
-%   - 2 x Xeon Platinum 9242 with 48 cores each
-%   - 376GB ram
-% - for the jitter benchmarks, I wanted to have a very minimal operating system
-%   - Thus I installed X on a local (fast) USB stick
-% - Using pre-installed version of node exporter
-%   - Except for the patched metric throughput, where we forked at commit hash X
-% - Using pre-built prometheus version 2.45.1 in an ubuntu 22.04 singularity container based on
-%   the docker image available in the repo
-% - 
+
+For the \texttt{node\_exporter} performance benchmarks as well as the Prometheus benchmark, an \ac{HPC} 
+gcn2 type node from the HLRN Emmy cluster was used. This node has two Xeon Platinum 9242 with 48 cores each
+as well as 376GB of RAM. The servers were solely used for the benchmarks, thus resulting in
+no noisy neighbour problems.
+
+In order to facilitate a more minimal operating system with less running services, the jitter-based 
+performance penalty benchmark was done locally on a Dell Latitude 7420 running a minimal
+Debian bookworm on an USB stick. The Dell has a quad-core Intel i5-1145G7 as well as 16GB of RAM.
+
+The \texttt{node\_exporter} benchmarks uses a precompiled node exporter of version 1.7.0\footnote{With the following collectors enabled: cpu, cpufreq, infiniband, meminfo, netdev, vmstat.}
+For the isolated metric gathering benchmark, 
+\texttt{node\_exporter} was forked from version 1.7.0. For Prometheus, a Ubuntu 22.04 based singularity
+container was used as a basis, containing a Prometheus version 2.45.1. The Dockerfile is also available
+in the repository \cite{my_repo}.
+
 \subsection{\texttt{node\_exporter}}
-% - Welche Metriken wir beim starten aktivieren
 \subsubsection{Metric Gathering}
-% - Wie die Metriken mit green threads ge-fork-joined werden
-% - TODO How we patched it instead of mocking for the most realistic version
-%   - Show code in Appendix
+
+When requesting all metrics via the \texttt{/metrics} HTTP endpoint, \texttt{node\_exporter} runs the following
+function:
+
+\begin{listing}[H]
+  \inputminted{go}{./gather.go}
+  \caption{How the metrics are collected in \texttt{collector/collector.go}}
+\end{listing}
+
+So when requesting the metrics, \texttt{node\_exporter} spawns a new green thread for each metric plugin, 
+awaiting all results in a fork-join like model with a semaphore. Instead of benchmarking the single function
+by mocking a realistic application state, the Collect function was patched as follows:
+
+\begin{listing}[H]
+  \inputminted{go}{./gather_patched.go}
+  \caption{The patched collector measuring the collection time. Note that the \texttt{RealCollect} function contains the same code as the unpatched \texttt{Collect}.}
+\end{listing}
+
+Further small patches had to be done to fix any errors, see the reporitory for more information \cite{my_node_exporter}.
+
 \subsubsection{End to End}
-% - We use two tools
-%   - wrk TODO
-%   - go-wrk TODO
+The end-to-end benchmarks measured the throughput using traditional HTTP benchmarking. In particular, two different
+benchmarking tools were used:
+\begin{itemize}
+  \item \textbf{wrk} \cite{wrk} is a popular, CLI-based HTTP benchmarking tool written in C. Due to its optimized
+    performance it can serve as a baseline optimal throughput. In order to further improve throughput, it keeps
+    all connections open.
+  \item \textbf{go-wrk} \cite{go-wrk} is a reimplementation of wrk in the Go programming language, using gos
+    green threads for the load generation.
+\end{itemize}
+All benchmarks are measured using \texttt{vmwstat 1}. The benchmarks can be divided into three different kinds.
+\begin{enumerate}
+  \item \textbf{wrk sequential}: Using a single thread and a single connection, this is the most realistic load,
+    as metrics are usually only crawled by a single Prometheus as well. This is also the simplest possible benchmark;
+    just send as fast as possible.
+  \item \textbf{wrk parallel}: Scaling along the number of connections and threads
+\end{enumerate}
 % - All benchmarks are measured using `vmstat 1`
 % - We have three types of benchmarks
 %   - wrk seq
@@ -238,10 +282,12 @@ benchmarks suits are susceptible to commercial incentives.
 % - Why we think this could be a problem
 %   - As mentioned before it spawns up several green threads
 %   - Thus more memory footprint, thus potentially wasting the whole CPU cache
+% The C file
 \subsection{Prometheus}
 % - All benchmarks are measured using `vmstat 1`
 
 % - We mocked node exporter
+%   - TODO how often it checks; the whole prometheus conf
 %   - TODO fastapi 0.104 uvicorn 0.24 single route
 %   - TODO only integers, configurable amount of metrics, all nodes have same metrics
 %   - TODO how we did randomness with urandom times mersenne warmup
@@ -273,5 +319,7 @@ benchmarks suits are susceptible to commercial incentives.
 %   - Even more, the aforementioned tsbs has some predefined data gen
 %     - Also they split up the step to avoid the overhead; for us too much IO overhead
 %       - Note that we have a convert script to JSON in the repo
+% - The mock reporter benchmarks were slower than they had to be
+%   because I also piped out all curl results, which added up to 20GB IO :D
 
 \section{Conclusion}
