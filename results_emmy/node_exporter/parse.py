@@ -45,7 +45,7 @@ Number of Errors:       0
 """
 GO_WRK_REGEX = re.compile(r"""\s*Running benchmark with (?P<goroutines>\d+) goroutines for (?P<time>\d+) seconds\s*
 \s*Running 60s test @ http://localhost:24343\s*
-\s*900 goroutine\(s\) running concurrently\s*
+\s*\d+ goroutine\(s\) running concurrently\s*
 \s*(?P<total_reqs>\d+) requests in (?P<total_time>\S+), (?P<total_data>\S+) read\s*
 \s*Requests/sec:\s+(?P<reqs_sec>\S+)\s*
 \s*Transfer/sec:\s+(?P<data_sec>\S+)\s*
