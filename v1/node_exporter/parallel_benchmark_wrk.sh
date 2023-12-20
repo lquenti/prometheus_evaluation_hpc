@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGET_URL="http://localhost:9100"
+TARGET_URL="http://localhost:24343"
 DURATION=60
 CONNECTIONS=(1 10 25 50 100 150 200 300 400 500)
 THREADS=(1 2 4 8 16)

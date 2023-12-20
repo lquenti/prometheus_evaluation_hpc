@@ -10,6 +10,7 @@ echo "Starting Node Exporter with NUMBER_OF_PROCESSES=${NUMBER_OF_PROCESSES}"
 
 ./node_exporter --collector.disable-defaults \
   --collector.cpu \
+  --web.listen-address=:24343 \
   --collector.cpufreq \
   --collector.infiniband \
   --collector.meminfo \

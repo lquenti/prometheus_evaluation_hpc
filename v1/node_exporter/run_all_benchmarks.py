@@ -3,6 +3,7 @@
 import shutil
 import os
 import subprocess
+import sys
 import time
 
 from dataclasses import dataclass
@@ -10,7 +11,7 @@ from dataclasses import dataclass
 import psutil
 
 
-NE_NUMBER_OF_PROCESSES = [1,2,4,8,16,32,64,128]
+NE_NUMBER_OF_PROCESSES = [1,2,4,8,16,32]
 
 NE_PATH = "./node_exporter.sh"
 OUTPUT_PATH = "./results"
@@ -35,12 +36,15 @@ BENCHMARKTYPE_PARALLEL_WRK = BenchmarkType(
 
 def prepare():
     # reset output folder
-    try:
-        shutil.rmtree(OUTPUT_PATH)
-    except FileNotFoundError:
-        pass
+    # (only if you are the only process, i.e. you do all benchmarks)
+    if len(sys.argv) == 1:
+        try:
+            shutil.rmtree(OUTPUT_PATH)
+        except FileNotFoundError:
+            pass
 
-    os.makedirs(OUTPUT_PATH)
+    if not os.path.exists(OUTPUT_PATH):
+        os.makedirs(OUTPUT_PATH)
 
 def kill(pid):
     root = psutil.Process(pid)
@@ -58,17 +62,16 @@ def run_benchmark_generic(benchmark_type: BenchmarkType, number_of_processes):
     with open(f"{folder}/vmstat_{number_of_processes}.txt", "w") as fp:
         vmstat = subprocess.Popen(["vmstat", "1"], stdout=fp)
 
-    result = subprocess.run(
-        [benchmark_type.path_to_script],
-        capture_output=True,
-        text=True,
-        stderr=subprocess.STDOUT # merge
-    )
+    with open(file, 'w') as fp:
+    	result = subprocess.run(
+    	    [benchmark_type.path_to_script],
+    	    text=True,
+    	    stdout=fp,
+    	    stderr=subprocess.STDOUT # merge
+    	)
 
     kill(vmstat.pid)
 
-    with open(file, 'w') as fp:
-        fp.write(result.stdout)
 
 def run_benchmark_sequential(number_of_processes):
     run_benchmark_generic(BENCHMARKTYPE_SEQUENTIAL, number_of_processes)
@@ -87,13 +90,26 @@ def main():
         process = subprocess.Popen([NE_PATH])
         time.sleep(2)
     
-        # TODO can they be together for caching reasons?
-        print("BEGIN SEQUENTIAL")
-        run_benchmark_sequential(n)
-        print("BEGIN BEGIN PARALLEL GO")
-        run_benchmark_parallel_go(n)
-        print("BEGIN BEGIN PARALLEL WRK")
-        run_benchmark_parallel_wrk(n)
+        # If no arguments are given, run all
+        if len(sys.argv) == 1:
+            print("BEGIN SEQUENTIAL")
+            run_benchmark_sequential(n)
+            print("BEGIN BEGIN PARALLEL GO")
+            run_benchmark_parallel_go(n)
+            print("BEGIN BEGIN PARALLEL WRK")
+            run_benchmark_parallel_wrk(n)
+        elif sys.argv[1] == "only-seq":
+            print("BEGIN SEQUENTIAL")
+            run_benchmark_sequential(n)
+        elif sys.argv[1] == "only-go":
+            print("BEGIN BEGIN PARALLEL GO")
+            run_benchmark_parallel_go(n)
+        elif sys.argv[1] == "only-wrk":
+            print("BEGIN BEGIN PARALLEL WRK")
+            run_benchmark_parallel_wrk(n)
+        else:
+            print(f"Illegal arguments! {sys.argv}")
+            return
 
         # We have to kill the subprocesses
         # https://stackoverflow.com/a/27034438/9958281
