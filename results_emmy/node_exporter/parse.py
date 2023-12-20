@@ -1,10 +1,12 @@
+import json
 import re
+import os
 
-# - [ ] Get sequential::output correctly parsed
+# - [x] Get sequential::output correctly parsed
 # - [x] Get vmstat correctly parsed
-# - [ ] Get parallel_wrk::output correctly parsed
-# - [ ] Get parallel_go::output correctly parsed
-# - [ ] Create a sane JSON structure out of this
+# - [x] Get parallel_wrk::output correctly parsed
+# - [x] Get parallel_go::output correctly parsed
+# - [x] Create a sane JSON structure out of this
 
 """
 Looking like
@@ -76,18 +78,71 @@ def parse_wrk(text: str):
 def parse_go_wrk(text: str):
     return [m.groupdict() for m in GO_WRK_REGEX.finditer(text)]
 
-output_text = """
-Running benchmark with 900 goroutines for 60 seconds
-Running 60s test @ http://localhost:24343
-  900 goroutine(s) running concurrently
-1807813 requests in 59.792676902s, 1.79GB read
-Requests/sec:           30234.69
-Transfer/sec:           30.59MB
-Avg Req Time:           29.767132ms
-Fastest Request:        55.441µs
-Slowest Request:        262.012151ms
-Number of Errors:       0
-"""
+def get_directory_structure(rootdir):
+    dir_structure = {}
 
-print(parse_go_wrk(output_text))
+    for dirpath, dirnames, filenames in os.walk(rootdir):
+        # We'll use os.path.relpath to get relative path to the root directory
+        path = dirpath.split(os.sep)
+        subdir = dict.fromkeys(filenames)
+        
+        # Reading file contents and assigning it to the file keys
+        for file in filenames:
+            with open(os.path.join(dirpath, file), 'r') as f:
+                subdir[file] = f.read()
 
+        # Nested assignment using reference to innermost dictionary
+        current_layer = dir_structure
+        for part in path:
+            if part not in current_layer:
+                current_layer[part] = {}
+            current_layer = current_layer[part]
+        current_layer.update(subdir)
+
+    return dir_structure
+
+def extract_numbers(file_dict):
+    """
+    Creates a nested dictionary for files with prefixes 'output' and 'vmstat'.
+    The structure will be:
+    {
+        "output": {N: content of output_N.txt},
+        "vmstat": {N: content of vmstat_N.txt}
+    }
+    """
+    custom_dict = {"output": {}, "vmstat": {}}
+
+    for file_name, content in file_dict.items():
+        if file_name.startswith("output_") or file_name.startswith("vmstat_"):
+            parts = file_name.split('_')
+            prefix = parts[0]
+            number = parts[1].split('.')[0]
+
+            # Ensuring the number is an integer
+            try:
+                number = int(number)
+            except ValueError:
+                continue  # skip file if the number part isn't an integer
+
+            custom_dict[prefix][number] = content
+
+    return custom_dict
+
+
+results_structure = get_directory_structure("./results")['.']['results']
+
+# Parse what is vmstat and what is output
+for benchmark_type in results_structure.keys():
+    results_structure[benchmark_type] = extract_numbers(results_structure[benchmark_type])
+
+# Parse the actual output and vmstat files
+for benchmark_type in results_structure.keys():
+    parse = parse_go_wrk if "go" in benchmark_type else parse_wrk
+
+    for n in results_structure[benchmark_type]['vmstat'].keys():
+        results_structure[benchmark_type]['vmstat'][n] = parse_vmstat(results_structure[benchmark_type]['vmstat'][n])
+    for n in results_structure[benchmark_type]['output'].keys():
+        results_structure[benchmark_type]['output'][n] = parse(results_structure[benchmark_type]['output'][n])
+
+with open('parsed.json', 'w') as fp:
+    json.dump(results_structure, fp, indent=2)
