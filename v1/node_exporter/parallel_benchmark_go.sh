@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGET_URL="http://localhost:24343"
+TARGET_URL="http://localhost:24343/metrics"
 DURATION=60
 STEPS=(25 50 100 200 300 400 500 600 700 800 900 1000)
 
