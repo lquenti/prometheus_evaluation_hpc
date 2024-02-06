@@ -22,30 +22,30 @@ void save(time_t *buf, size_t buf_len, FILE *fp) {
 }
 
 int main() {
-  // Init
+  // init
+  int rank, size;
   MPI_Init(NULL, NULL);
-  int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  MPI_Comm_size(MPI_COMM_WORLD, &size);
 
   // Allocate for each buffer, open timestamp
   time_t *buf = malloc(BUFFER_SIZE * sizeof(time_t));
   char filename[25];
-  sprintf(filename, "output_%d.txt", rank);
+  sprintf(filename, "output_size_%d_rank_%d.txt", size, rank);
   FILE *fp = fopen(filename, "w");
   MPI_Barrier(MPI_COMM_WORLD);
 
-  // for number of runs
   for (size_t i=0; i<NUMBER_OF_RUNS; ++i) {
     fill(buf, BUFFER_SIZE);
     MPI_Barrier(MPI_COMM_WORLD);
 
     save(buf, BUFFER_SIZE, fp);
     MPI_Barrier(MPI_COMM_WORLD);
-    
   }
 
   fclose(fp);
   MPI_Finalize();
+  free(buf);
   return 0;
 }
 
