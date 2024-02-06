@@ -135,7 +135,7 @@ configured in the dashboards.
 
 \subsection{Current Architrecture: HLRN Emmy}
 For Emmy, a pull-based architecture is used. The node\_exporter\footnote{
-\url{https://github.com/prometheus/node_exporter}} exposes the \texttt{/metrics} endpoint, to which
+\url{https://github.com/prometheus/node_exporter}} exposes the \texttt{/metrics} HTTP endpoint, to which
 the Prometheus database connects to when fetching the data. The aggregated data also gets queried
 through pre-made Grafana dashboards with PromQL.
 
@@ -148,8 +148,8 @@ through pre-made Grafana dashboards with PromQL.
 \subsection{Prometheus}
 More than just a \ac{TSDB}, Prometheus is a pull-based systems monitoring toolkit. Originally 
 developed at SoundCloud, it is now a non-commercial open source project hosted by the \ac{CNCF},
-which is a part of the Linux Foundation. It expoeses the pull metrics via \texttt{node\_exporter},
-which then get scraped by the Prometheus server into its \ac{TSDB}, which can then be queried through
+which is a part of the Linux Foundation. The clients expose the pull metrics via \texttt{node\_exporter} or other custom tooling,
+that then get scraped by the Prometheus server into its \ac{TSDB}, which can then be queried through
 PromQL, its own query language.
 
 \begin{figure}[H]
@@ -160,8 +160,8 @@ PromQL, its own query language.
 
 \subsection{TSDB Performance Evaluation}
 While there are several papers on \ac{TSDB} performance evaluation, most benchmarking was mainly
-done by different vendors. In this section, we will cover one formal publication as well as two
-industry standards for push and pull based database benchmarking.
+done by different vendors. In this section, we will cover one publication as well as two
+industry standards for push and pull based database benchmarking respectively.
 
 The most actively maintained academic benchmark was first published by Liu and Yuan in 2019 \cite{benchmark_paper}.
 It is maintained to this day. While it surrently only supports Push-based metrics, it supports not
@@ -197,7 +197,7 @@ benchmarks were designed as part of this report:
   \item Measuring the isolated performance of the metric gathering function within the \texttt{node\_exporter} daemon.
   \item Measuring the end-to-end performance of the \texttt{node\_exporter} daemon with different HTTP load generators.
   \item Measuring the scalability of Prometheus by increasing the number of daemons to fetch from.
-  \item Measuring the performance penalty of \texttt{node\_exporter} on an running \ac{HPC} job.
+  \item Measuring the performance penalty of \texttt{node\_exporter} on an running \ac{HPC} job (jitter-benchmark).
 \end{itemize}
 
 Note that the code for all benchmarks \cite{my_repo} as well as the patched \texttt{node\_exporter} \cite{my_node_exporter}
@@ -211,8 +211,8 @@ as well as 376GB of RAM. The servers were solely used for the benchmarks, thus r
 no noisy neighbour problems.
 
 In order to facilitate a more minimal operating system with less running services, the jitter-based 
-performance penalty benchmark was done locally on a Dell Latitude 7420 running a minimal
-Debian bookworm on an USB stick. The Dell has a quad-core Intel i5-1145G7 as well as 16GB of RAM.
+performance penalty benchmark was done locally on a Thinkpad T14 Gen 1 running a minimal
+Debian bookworm with all non-essential services killed. The Thinkpad has a quad-core Intel i5-10210U as well as 16GB of RAM.
 
 The \texttt{node\_exporter} benchmarks uses a precompiled node exporter of version 1.7.0\footnote{With the following collectors enabled: cpu, cpufreq, infiniband, meminfo, netdev, vmstat.}
 For the isolated metric gathering benchmark, 
@@ -243,46 +243,38 @@ by mocking a realistic application state, the Collect function was patched as fo
 Further small patches had to be done to fix any errors, see the reporitory for more information \cite{my_node_exporter}.
 
 \subsubsection{End to End}
-The end-to-end benchmarks measured the throughput using traditional HTTP benchmarking. In particular, two different
+The end-to-end benchmarks measured the throughput of the client exposing the metrics using traditional HTTP benchmarking. In particular, two different
 benchmarking tools were used:
 \begin{itemize}
   \item \textbf{wrk} \cite{wrk} is a popular, CLI-based HTTP benchmarking tool written in C. Due to its optimized
     performance it can serve as a baseline optimal throughput. In order to further improve throughput, it keeps
-    all connections open.
+    all HTTP connections open between requests.
   \item \textbf{go-wrk} \cite{go-wrk} is a reimplementation of wrk in the Go programming language, using gos
-    green threads for the load generation.
+    green threads and standard \texttt{net} library for the load generation.
 \end{itemize}
-All benchmarks are measured using \texttt{vmwstat 1}. The benchmarks can be divided into three different kinds.
+All benchmarks are continuously measured using \texttt{vmwstat 1}. The benchmarks can be divided into three different kinds.
 \begin{enumerate}
   \item \textbf{wrk sequential}: Using a single thread and a single connection, this is the most realistic load,
-    as metrics are usually only crawled by a single Prometheus as well. This is also the simplest possible benchmark;
+    as metrics are usually only crawled by a single Prometheus server as well. This is also the simplest possible benchmark;
     just send as fast as possible.
-  \item \textbf{wrk parallel}: Scaling along the number of connections and threads
+  \item \textbf{wrk parallel}: Scaling along the number of open HTTP connections and threads. This is for creating the maximally possible throughput, although it is not realistic since prometheus does not open multiple HTTP connections to the same \texttt{node\_exporter}.
+  \item \textbf{go-wrk parallel}: Scaling along the number of go routines/green threads. This is a more realistic load, as it most behaves like Prometheus. Both Prometheus and go-wrk use the same underlying request library, both do not keep HTTP connections open between requests and both use go routines for parallelism.
 \end{enumerate}
-% - All benchmarks are measured using `vmstat 1`
-% - We have three types of benchmarks
-%   - wrk seq
-%     - Most realistic load, as one usually has a single prometheus
-%     - simplest benchmark: we just blast as fast as possible with 1 thread
-%   - wrk par
-%     - It keeps the HTTP connections open for maximizing throughput.
-%     - While it maximizes throughput, it is not realistic as prom wouldnt do that!
-%     - scale along threads and HTTP connections
-%   - go-wrk par
-%     - it uses the same go `net` lib as prom
-%     - It doesnt keep connections open but is highly parallel with go's green threading model
-%     - Scale along go-threads
-% - For the parallel benchmarks, we start it with some kind of parallelism for some amount
-%   then increase parallelism in a step and so on and so fourth:
-%   - We also scale along the axis of number of processe consumed by node exporter through the
-%     GOMAXPROCS
-%     - Note that even with n=1 go threads can still highly improve performance by fixing I/O idle
-% - Fully automatic pipeline
+The benchmarks work as follows: In an outer loop, we scale around the number of processes consumed by the \texttt{node\_exporter} by changing the \texttt{GOMAXPROCS} environment variable of the underlying go runtime. Note that even with single threading go routines can still highly improve performance by hiding I/O idle times between different metrics fetching. For each parallelism, we scale the software as described above, sending against the \texttt{/metrics} endpoint, which in turn starts node exporter to refetch and return the newest values. By measuring how often this request can be done and the latency it took, the performance can be evaluated.
+
+Note that this complete benchmarking pipeline is scripted out and automated into a single SLURM job.
 \subsubsection{Jitter}
-% - Why we think this could be a problem
-%   - As mentioned before it spawns up several green threads
-%   - Thus more memory footprint, thus potentially wasting the whole CPU cache
-% The C file
+While the performance of the metric collector itself is important, it can reasonably be assumed that they are able to run well on big \ac{HPC} machines. From a raw compute providers standpoint, the more interesting question is whether the metric collection overhead is managable, i.e. the performance degradion of the running jobs are significant. 
+
+Performance degration is hard to measure. For once, \ac{HPC} systems, while running a minimal operating system, are still very complex running many different daemons. It is not sufficient to just measure the time a single threaded metric collection takes and take that share times the CPU clock speed; other performance losses such as flushed CPU caches or bad OS scheduling can incur even bigger losses than the actual runtime. As previously shown \texttt{node\_exporter} spawns a new go routine for each metric, which could result in a lot of cache invalidation.
+
+The approach used in this report is a more realistic one. We have written an MPI-based program running the following pseudo-code:
+\begin{listing}[H]
+  \inputminted{C}{./jitter.c}
+  \caption{A simplified C-style pseudo code of the jitter program.}
+\end{listing}
+This code just, as fast as possible, measures the current time on as many processes as spawned via MPI. By using barriers, it can be assured that the processes do not get out of sync, creating unexpected load spikes. Once the \texttt{node\_exporter} metrics get requested, a slowdown in measurements can be seen, which can then be analyzed in order to quantify the severity of the interference.
+
 \subsection{Prometheus}
 % - All benchmarks are measured using `vmstat 1`
 
@@ -310,8 +302,10 @@ All benchmarks are measured using \texttt{vmwstat 1}. The benchmarks can be divi
 %     - Terminate == SIGTERM
 
 \section{Results}
+% Mention that the raw results as well as all analysis code can be found on github for reproducability sake
 \subsection{\texttt{node\_exporter}}
 \subsection{Prometheus}
+% reason that it failed so hard was probably too many fds?
 
 \section{Discussion}
 % Node Exporter:
