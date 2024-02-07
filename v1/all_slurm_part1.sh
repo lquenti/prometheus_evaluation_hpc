@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --exclusive
 #SBATCH -o run-%J
-#SBATCH --reservation=gzadmhno_2
+#SBATCH -p medium40
 
 cd $SLURM_SUBMIT_DIR
 

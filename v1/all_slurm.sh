@@ -2,6 +2,7 @@
 #SBATCH -p medium
 #SBATCH -t 24:00:00
 #SBATCH -o run-%J
+#SBATCH -p medium40
 
 cd $SLURM_SUBMIT_DIR
 
