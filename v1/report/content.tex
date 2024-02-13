@@ -305,18 +305,94 @@ To summarize, the high level fully automatized workflow works as follows:
 \end{itemize}
 
 \section{Results}
-% Mention that the raw results as well as all analysis code can be found on github for reproducability sake
-\subsection{\texttt{node\_exporter}}
+This section will cover the results of the aforementioned benchmarks. First, it will go over the performance of the \texttt{node\_exporter} itself, which measures how performant the daemon is at collecting all metrics of a single node. After that, the focus will be on the overhead on normal computation load incured by the \texttt{node\_exporter}. Lastly, the results of the benchmark of Prometheus itself will be covered.
+
+Note that all benchmark scripts as well as analysis code can be found in the accompanying GitHub repository.
+\subsection{\texttt{node\_exporter} Performance}
+\paragraph{Patched Node Exporter:} First, we start looking at the metric gathering benchmark, i.e. running the metric gathering 1000 times in a loop without the overhead of HTTP and the Go router. The following probability density functions were computed using \texttt{seaborn}s kernel density estimation.
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{./plots/patched_node_exp_time_per_1000_reqs.png}
+  \caption{}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{./plots/patched_node_exp_reqs_per_sec.png}
+  \caption{}
+\end{subfigure}
+  \caption{A kernel density estimation of the results. a) showing the raw times it took to collect all metics 1000 times. b) calculated the approximated requests per second from the initial data.}
+\end{figure}
+Calculating from the original data, the average request took 71ms, which is an equivalent of 13.99 requests per second, which shows that there is plenty of spare time for adding additional metrics. For the realistic use case of running Prometheus as the monitoring solution of the \ac{SCC}, it can be assumed that the metrics will be fetched around once every 10 seconds. This results in 0.71\% of the time a go process will be running, allocating a single CPU. As previously mentioned, the node used has two Xeon Platinum 9242 with 48 cores, i.e. 96 threads, each. Depending on how well multithreading is utilized at that moment, this results in somewhere between 0.014\% and 0.0074\% of the total compute time. Although this data shows that the direct resource overhead incured by \texttt{node\_exporter} is negligable note that this computation does not include the performance penalty on the other jobs and thus can be seen only as a loose lower bound.\\
+
+\paragraph{Node Exporter HTTP benchmarking:} The results of this benchmark are two-fold. First, it was analyzed how well it scales with with parallelism under moderate load. For that, a single threaded \texttt{wrk} load generator\footnote{Using multiple open HTTP connections} was used while the number of processes available to the Go runtime was increased between benchmarks:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{./plots/node_exporter_performance_per_parallelism.png}
+  \caption{The requests per second given the amount of processes available for Gos runtime. Note that $n=1$ failed while benchmarking due to an error in the benchmark pipeline.}
+\end{figure}[H]
+It can be seen that beyond 8 processes the performance decreases, due to the overhead being higher than the performance gains made my the extra parallelism. Furthermore, with 2 processes, the whole end-to-end request\footnote{Excluding a realistic round trip time since the request was done against \texttt{localhost}} around 27.5 times per second.\\
+
+Lastly, it was tested how resilient the \texttt{node\_exporter} is against very heavy load. For this, the \texttt{wrk} load generator was used using 16 threads. The benchmark was scaled in two dimensions: Both in the number of concurrent HTTP connections between \texttt{wrk} and \texttt{node\_exporter} as well as the number of processes available to the Go runtime.
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{./plots/node_exporter_throughput.png}
+  \caption{}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{./plots/node_exporter_errors.png}
+  \caption{}
+\end{subfigure}
+  \caption{a) shows the average throughput and b) the percentage of requests which timed out.}
+\end{figure}
+This benchmark shows that \texttt{node\_exporter} performs very poorly under heavy load. Even with the previously found optimum of 8 OS processes, it results in over 80\% of requests timed out when sending under a heavy load.
+\subsection{\texttt{node\_exporter} Performance Penalty (Jitter)}
+% jitter:
 \subsection{Prometheus}
+For this benchmark, the Prometheus was configured to request each node once every 10 seconds for 10 minutes, i.e. to request each node a total of 60 times. From this maximum the theoretical max of 60 times number of nodes can be calculated. All mock clients as well as prometheus ran on the same node.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{./plots/prometheus_1node.png}
+  \caption{Scaling up the number of mock nodes. The number of requests are the number of times Prometheus contacted one of the mock clients. All mock clients ran on a single node.}
+\end{figure}
+
+The drop off will be further analyzed in the discussion. To ensure that it is not a limitation of the Linux kernel having too many open file descriptors and running processes, the mock clients were then split onto two nodes.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{./plots/prometheus_2node.png}
+  \caption{Scaling up the number of mock nodes. The number of requests are the number of times Prometheus contacted one of the mock clients. The mock clients were split onto two nodes.}
+\end{figure}
+
+As one can see, using a single node, the performance drops off sharply after 1500 nodes. And even with the load split onto two nodes, it drops to nearly no requests at all using 2500 nodes. 
+
+Excluding the dropoff itself, this performance is very bad. The data implies that, using our single node setup, monitoring more than 1500 clients would fail. Looking at the optimum case of a single node setup fetching 1500 node exporter, it approximately matches 90000 requests, which results in 150 requests per second. The metrics were of the format \texttt{keyname3: 42}. 
+
+Assuming that each number is in the normal 32bit integer range, each metric can be rounded up to $10+\lceil\log_{10}(2^{31})\rceil = 20$ byte of data, with 50 metrics this adds up to 1kb per node. Thus a total throughput of around 150 kb of useful data per second as achived.
+
 
 \section{Discussion}
+% Prometheus: the problem was that it is not scaling to 4k
+
 % Node Exporter:
 % - we used randomness, not perlin noise. This is less realistic but less overhead
 %   - Even more, the aforementioned tsbs has some predefined data gen
 %     - Also they split up the step to avoid the overhead; for us too much IO overhead
 %       - Note that we have a convert script to JSON in the repo
-% - The mock reporter benchmarks were slower than they had to be
-%   because I also piped out all curl results, which added up to 20GB IO :D
-% reason that it failed so hard was probably too many fds?
+% - reason that it failed so hard was probably too many fds?
+% - prometheus: although one can see that it scales bad, it is bad bc the prometheus server still has a shitload of load mock clients
+% - jitter: the data were SO MUCH, count how many exactly...
 
 \section{Conclusion}
+% bla bla benchmark design
+% bla bla nochmal methodology durchgehen generell was man gemacht hat
+% results:
+% - node exporter scaled selbst gut genug
+% - jitter keine ahunng
+% - prometheus: scaled nicht, der throughput ist ass bei 1500 und bei 2000 breaked es, selbst
