@@ -378,16 +378,13 @@ Assuming that each number is in the normal 32bit integer range, each metric can 
 
 
 \section{Discussion}
-% Prometheus: the problem was that it is not scaling to 4k
+As clearly seen in the data, the Prometheus job had a scaling problem when moving from 1500 to 2000 mock node exporter. Confusingly, the problem was not CPU, Memory or I/O utilization, as all of those were not fully utilized. The data showing the utilization while benchmarking with one server running 2000 mock nodes can be found in the appendix.
 
-% Node Exporter:
-% - we used randomness, not perlin noise. This is less realistic but less overhead
-%   - Even more, the aforementioned tsbs has some predefined data gen
-%     - Also they split up the step to avoid the overhead; for us too much IO overhead
-%       - Note that we have a convert script to JSON in the repo
-% - reason that it failed so hard was probably too many fds?
-% - prometheus: although one can see that it scales bad, it is bad bc the prometheus server still has a shitload of load mock clients
-% - jitter: the data were SO MUCH, count how many exactly...
+The working hypothesis was that the Linux kernel had problems with that many mock processors; either handling all the open file descriptors or just scheduling the sheer amount of processes. To validate that hypothesis, the two \ac{HPC} node benchmarks were done. While the benchmark show that it scales further, it does not show that the problem was with either the amount of processes or the amount of file descriptors. When splitting the mock load generator onto two nodes, the expected result would be around twice the amount of nodes until it stops serving all collectors, which is definitely not the case\footnote{Not exactly twice the amount, because one of the nodes still ran Prometheus. Although this should not be a problem since, as already mentioned, the node was idling on all ressource dimensions.}.\\
+
+Furthermore, one should note that the benchmarker used pseudorandomness in form of a mersenne twister for the fake metric generation. While this is less realistic than using more sophisticated data generation methods such as perlin noise, it incurs significantly less overhead per fake node. Other benchmarks such as the previously mentioned \ac{TSBS} used pregenerated mock data. This would also not be possible as it would result into a very heavy I/O load on the central storage cluster, resulting in strongly reduced I/O speed for all Prometheus operations.\\
+
+Lastly, the jitter benchmark was very difficult to analyze. Due to the inherent design on recording as many data points as possible, it resulted in over 130 million data points, sometimes recording less than 3 seconds of time. It was not possible to downsample the data since the thin long tails were explicitly of interest. The data set was too large to use kernel density estimations to create a probability density function. Furthermore, due to the sheer differences in tail latencies, layering the measurements and its baseline on the same histogram was not possible, as it was not possible to find a bin selection that properly presented both.
 
 \section{Conclusion}
 % bla bla benchmark design
