@@ -1,59 +1,72 @@
-import json
 import re
+import json
 import os
 
-# - [x] Get sequential::output correctly parsed
-# - [x] Get vmstat correctly parsed
-# - [x] Get parallel_wrk::output correctly parsed
-# - [x] Get parallel_go::output correctly parsed
-# - [x] Create a sane JSON structure out of this
+def parse_sequential(data):
+    section_pattern = re.compile(r'(\d+) threads and (\d+).*?'
+                                 r'Latency\s+(\d+\.\d+)([a-z]+)\s+(\d+\.\d+)([a-z]+)\s+(\d+\.\d+)([a-z]+)\s+(\d+\.\d+)%.*?'
+                                 r'Req/Sec\s+(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)%.*?'
+                                 r'(\d+) requests in.*?, (\d+\.\d+)([A-Z]+) read.*?'
+                                 r'Requests/sec:\s+(\d+\.\d+).*?'
+                                 r'Transfer/sec:\s+(\d+\.\d+)([A-Z]+)', re.DOTALL)
+    matches = section_pattern.findall(data)
+    results = []
+    for match in matches:
+        result = {
+            "threads": int(match[0]),
+            "connections": int(match[1]),
+            "latency_avg": f"{match[2]}{match[3]}",
+            "latency_stdev": f"{match[4]}{match[5]}",
+            "latency_max": f"{match[6]}{match[7]}",
+            "latency_stdev_pct": float(match[8]),
+            "req_sec_avg": float(match[9]),
+            "req_sec_stdev": float(match[10]),
+            "req_sec_max": float(match[11]),
+            "req_sec_stdev_pct": float(match[12]),
+            "requests": int(match[13]),
+            "read_mb": f"{match[14]}{match[15]}",
+            "requests_per_sec": float(match[16]),
+            "transfer_per_sec_mb": f"{match[17]}{match[18]}"
+        }
+        results.append(result)
+    return results
 
-"""
-Looking like
+import re
 
-Running 1m test @ http://localhost:24343
-  1 threads and 10 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency   102.44us  114.80us  11.47ms   96.71%
-    Req/Sec    79.15k     1.33k   87.98k    93.84%
-  4734116 requests in 1.00m, 4.75GB read
-Requests/sec:  78771.28
-Transfer/sec:     80.98MB
-"""
-WRK_REGEX = re.compile(r"""\s*Running (?P<time>.*?) test \@ .*?
-\s*(?P<threads>\d+) threads and (?P<connections>\d+) connections *?
-.*?
-\s*Latency\s*(?P<latency_avg>\S+)\s+(?P<latency_stdev>\S+)\s+(?P<latency_max>\S+)\s*.*?
-\s*Req/Sec\s*(?P<reqsec_avg>\S+)\s+(?P<reqsec_stdev>\S+)\s+(?P<reqsec_max>\S+)\s*.*?
-\s*(?P<total_reqs>\d+) requests in \S+, (?P<amount>\S+) read\s*
-\s*Requests/sec: \s*(?P<reqs_sec>\S+)
-\s*Transfer/sec:\s*(?P<transfer_sec>\S+)""", re.MULTILINE)
-
-"""
-Looking like
-
-Running benchmark with 900 goroutines for 60 seconds
-Running 60s test @ http://localhost:24343
-  900 goroutine(s) running concurrently
-1807813 requests in 59.792676902s, 1.79GB read
-Requests/sec:           30234.69
-Transfer/sec:           30.59MB
-Avg Req Time:           29.767132ms
-Fastest Request:        55.441µs
-Slowest Request:        262.012151ms
-Number of Errors:       0
-"""
-GO_WRK_REGEX = re.compile(r"""\s*Running benchmark with (?P<goroutines>\d+) goroutines for (?P<time>\d+) seconds\s*
-\s*Running 60s test @ http://localhost:24343\s*
-\s*\d+ goroutine\(s\) running concurrently\s*
-\s*(?P<total_reqs>\d+) requests in (?P<total_time>\S+), (?P<total_data>\S+) read\s*
-\s*Requests/sec:\s+(?P<reqs_sec>\S+)\s*
-\s*Transfer/sec:\s+(?P<data_sec>\S+)\s*
-\s*Avg Req Time:\s+(?P<avg_req_time>\S+)\s*
-\s*Fastest Request:.*?
-\s*Slowest Request:.*?
-Number of Errors:\s+(?P<num_errors>\d+)""", re.MULTILINE)
-
+def parse_wrk(data):
+    section_pattern = re.compile(
+        r'Running benchmark with (?P<threads>\d+) threads and (?P<connections>\d+) connections for (?P<duration_seconds>\d+)s.*?'
+        r'Latency\s+(?P<latency_avg>\d+\.\d+)(?P<latency_avg_unit>[a-z]+)\s+(?P<latency_stdev>\d+\.\d+)(?P<latency_stdev_unit>[a-z]+)\s+(?P<latency_max>\d+\.\d+)(?P<latency_max_unit>[a-z]+)\s+(?P<latency_stdev_pct>\d+\.\d+)%.*?'
+        r'Req/Sec\s+(?P<req_sec_avg>\d+\.\d+)\s+(?P<req_sec_stdev>\d+\.\d+)\s+(?P<req_sec_max>\d+\.\d+)\s+(?P<req_sec_stdev_pct>\d+\.\d+)%.*?'
+        r'(?P<requests>\d+) requests in.*?, (?P<read_size>\d+\.\d+)(?P<read_unit>[A-Z]+) read.*?(?:\n.*?timeout (?P<timeout>\d+))?.*?'
+        r'Requests/sec:\s+(?P<requests_per_sec>\d+\.\d+).*?'
+        r'Transfer/sec:\s+(?P<transfer_per_sec_size>\d+\.\d+)(?P<transfer_per_sec_unit>[A-Z]+)', re.DOTALL)
+    
+    matches = section_pattern.finditer(data)
+    results = []
+    for match in matches:
+        result = {
+            "threads": int(match.group('threads')),
+            "connections": int(match.group('connections')),
+            "duration_seconds": int(match.group('duration_seconds')),
+            "latency_avg": f"{match.group('latency_avg')}{match.group('latency_avg_unit')}",
+            "latency_stdev": f"{match.group('latency_stdev')}{match.group('latency_stdev_unit')}",
+            "latency_max": f"{match.group('latency_max')}{match.group('latency_max_unit')}",
+            "latency_stdev_pct": float(match.group('latency_stdev_pct')),
+            "req_sec_avg": float(match.group('req_sec_avg')),
+            "req_sec_stdev": float(match.group('req_sec_stdev')),
+            "req_sec_max": float(match.group('req_sec_max')),
+            "req_sec_stdev_pct": float(match.group('req_sec_stdev_pct')),
+            "requests": int(match.group('requests')),
+            "read_mb": f"{match.group('read_size')}{match.group('read_unit')}",
+            "requests_per_sec": float(match.group('requests_per_sec')),
+            "transfer_per_sec_mb": f"{match.group('transfer_per_sec_size')}{match.group('transfer_per_sec_unit')}",
+            "timeouts": int(match.group('timeout')) if match.group('timeout') else 0  # Default to 0 if no timeout information
+        }
+        if result["timeouts"] != 0:
+            print(result)
+        results.append(result)
+    return results
 
 
 def parse_vmstat(text: str):
@@ -72,12 +85,7 @@ def parse_vmstat(text: str):
         parsed_output.append(row)
 
     return parsed_output
-
-def parse_wrk(text: str):
-    return [m.groupdict() for m in WRK_REGEX.finditer(text)]
-def parse_go_wrk(text: str):
-    return [m.groupdict() for m in GO_WRK_REGEX.finditer(text)]
-
+    
 def get_directory_structure(rootdir):
     dir_structure = {}
 
@@ -131,18 +139,17 @@ def extract_numbers(file_dict):
 
 results_structure = get_directory_structure("./results")['.']['results']
 
-# Parse what is vmstat and what is output
 for benchmark_type in results_structure.keys():
     results_structure[benchmark_type] = extract_numbers(results_structure[benchmark_type])
 
-# Parse the actual output and vmstat files
 for benchmark_type in results_structure.keys():
-    parse = parse_go_wrk if "go" in benchmark_type else parse_wrk
-
+    parse = parse_sequential if "sequential" in benchmark_type else parse_wrk
     for n in results_structure[benchmark_type]['vmstat'].keys():
         results_structure[benchmark_type]['vmstat'][n] = parse_vmstat(results_structure[benchmark_type]['vmstat'][n])
     for n in results_structure[benchmark_type]['output'].keys():
         results_structure[benchmark_type]['output'][n] = parse(results_structure[benchmark_type]['output'][n])
+
+print(type(results_structure["sequential"]["output"][8]))
 
 with open('parsed.json', 'w') as fp:
     json.dump(results_structure, fp, indent=2)
