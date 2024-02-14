@@ -1,0 +1,14 @@
+In order to manage multiple systems, especially large \ac{HPC} clusters, proper utilization of monitoring is of utmost importance.
+Monitoring has several use cases, from providing basic health overviews to understanding usage patterns or doing demand analysis by forecasting utilization based on current data.
+At the GWDG, two different Grafana based monitoring systems are used, one based on the InfluxDB \ac{TSDB} and one relying on Prometheus as the data source.
+
+This report provides a methodology for benchmarking pull-based monitoring systems such as Prometheus on different metrics. Additionally, it provides an answer on whether both monitoring systems can be merged by evaluating the viability and scalability of a Prometheus based monitoring system for a realistic \ac{HPC} use case.
+
+To accomplish this goal, four different benchmarks were designed: The first benchmark measures the performance of the metric gathering routine by patching the collector. The next benchmark provides a end to end measurement of the scalability and resilience of the collector utilizing traditional HTTP load generator technologies. The last collector benchmarks captures the performance penalty incurred by the metric collector on classical HPC computation load by analyzing the jitter between time measurements. Lastly, the last benchmark analyzes the overall performance and scalability of Prometheus itself by mocking the collector daemons and counting the number of pulls done.
+
+The results show that, although the collector did not handle the stress test load well, its throughput and overall performance is cufficient and the collection time acceptable, even using only a single process for execution. Prometheus itself did not scale well beyong a certain amount of nodes, failing with 2000 collectors when all run on the same hardware. Note that this is not merely a result of underprovisioned hardware but instead most likely an architectural problem, since all measurable metrics show that the server was not fully utilized.
+
+While this report presents a design and implementation of a performance penalty benchmark, the results were, mostly due to the sheer size of the data set, only partly analyzable in the scope of this report. The data shows a visibly longer tail in execution time, affirming that a measuable performance penalty exists. To provide a definite, quantifiable conclusion on the performance penalty created by the collector, further analysis has to be done.
+
+Concluding this report, while the collectors performance is sufficient, Prometheus performance strongly decreases once a certain amount of nodes are reached, implying that it is not usable for very large \ac{HPC} clusters without the usage of Prometheus clustering techniques.
+
