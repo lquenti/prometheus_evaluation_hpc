@@ -23,7 +23,7 @@ und Höchstleistungsrechnen \url{https://www.hlrn.de/}}. It can be used by all H
 Ranking 133th at the TOP500\footnote{As of November 2023.}, Emmy is the biggest cluster hosted by
 the \ac{GWDG}. It consists of 111,464 CPU Cores distributed over 1423 compute nodes resulting 
 in a total peak compute power of 5.95 PetaFLOP/s.
-\item \textbf{Grete}: Grete is a GPU \ac{HPC} cluster, formally part of the NHR system.
+\item \textbf{Grete}: Grete is a GPU \ac{HPC} cluster and part of the NHR system.
 It features 158 nodes with 2 AMD Epyc 7513 CPUs and four NVIDIA A100 GPUs each, connected through fast
 Infiniband fabric. As of November 2023, Grete is ranked 142 in the TOP500.
 \item \textbf{CARO}\cite{CARO}: Analogously to Emmy provided for the NHR, CARO is a compute cluster
@@ -93,7 +93,7 @@ Cloud-based monitoring services such as Datadog\footnote{\url{https://www.datado
 or Splunk\footnote{\url{https://www.splunk.com/}} have several advantages. Using an 
 externally hosted service simplifies the overall monitoring maintenance. By not requiring
 hardware for another service, it lowers the barrier of entry. Furthermore, since the whole
-monptoring stack is written by the same manufacturer, it allows for tighter integration.
+monitoring stack is written by the same manufacturer, it allows for tighter integration.
 
 On-premise hostings, on the other hand, also have several advantages over the cloud-based 
 solutions. Since they are part of the local network, they are easier to integrate into current
@@ -201,7 +201,7 @@ benchmarks were designed as part of this report:
 \end{itemize}
 
 Note that the code for all benchmarks \cite{my_repo} as well as the patched \texttt{node\_exporter} \cite{my_node_exporter}
-can be found on Github.
+are available on Github.
 
 \subsection{Setup}
 
